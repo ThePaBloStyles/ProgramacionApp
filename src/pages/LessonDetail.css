@@ -1,0 +1,159 @@
+.lesson-detail-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lesson-header {
+  margin-bottom: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.lesson-header h1 {
+  color: #333333;
+  margin-bottom: 8px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.lesson-description {
+  color: #666666;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.theory-card,
+.code-example-card,
+.exercise-card {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: white;
+}
+
+.theory-header,
+.code-header,
+.exercise-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.theory-header ion-icon,
+.code-header ion-icon,
+.exercise-header ion-icon {
+  font-size: 1.5em;
+  color: var(--ion-color-primary);
+}
+
+.theory-header h3,
+.code-header h3,
+.exercise-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.theory-content {
+  line-height: 1.6;
+  color: #333333;
+}
+
+.theory-content pre {
+  white-space: pre-wrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  color: #333333;
+}
+
+.code-example {
+  background: #2d3748;
+  border-radius: 8px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 10px 0;
+  border: 1px solid #4a5568;
+}
+
+.code-example pre {
+  margin: 0;
+  color: #e2e8f0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.code-example code {
+  color: #e2e8f0;
+  font-family: 'Courier New', monospace;
+}
+
+.exercise-content {
+  margin-top: 15px;
+}
+
+.exercise-content p {
+  margin-bottom: 15px;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.code-input {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  color: #333333;
+}
+
+.code-input:focus {
+  border-color: var(--ion-color-primary);
+  background: white;
+}
+
+.exercise-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exercise-actions ion-button {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  .lesson-detail-container {
+    padding: 30px;
+  }
+  
+  .exercise-actions {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .exercise-actions ion-button {
+    flex: 1;
+    margin: 0 5px;
+  }
+}

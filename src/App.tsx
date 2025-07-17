@@ -18,6 +18,7 @@ import JavaLearning from './pages/JavaLearning';
 import JavaHero from './pages/JavaHero';
 import AIChat from './pages/AIChat';
 import CodePlayground from './pages/CodePlayground';
+import LessonDetail from './pages/LessonDetail';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -76,6 +77,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/playground">
             <CodePlayground />
+          </Route>
+          <Route exact path="/lesson/:language/:lessonId">
+            <LessonDetail />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />

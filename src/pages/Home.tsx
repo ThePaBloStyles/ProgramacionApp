@@ -58,20 +58,6 @@ const Home: React.FC = () => {
                   <h1>Aprende a Programar con IA</h1>
                   <p>Tu asistente personal para dominar Python, Java y más lenguajes de programación</p>
                 </IonText>
-                <div className="hero-stats">
-                  <div className="stat">
-                    <IonIcon icon={people} />
-                    <span>1000+ Estudiantes</span>
-                  </div>
-                  <div className="stat">
-                    <IonIcon icon={school} />
-                    <span>50+ Lecciones</span>
-                  </div>
-                  <div className="stat">
-                    <IonIcon icon={trophy} />
-                    <span>20+ Logros</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
