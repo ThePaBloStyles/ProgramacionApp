@@ -1,0 +1,283 @@
+.java-hero-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f89820 0%, #ff6b35 100%);
+  min-height: 100vh;
+}
+
+.java-hero-section {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.java-hero-icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.java-hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.java-hero-section p {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  margin-bottom: 0;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.java-action-card {
+  margin-bottom: 30px;
+}
+
+.java-action-card ion-card {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+
+.java-training-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.java-features {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.java-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  min-width: 120px;
+}
+
+.java-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.java-feature-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.java-training-button {
+  --border-radius: 15px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(248, 152, 32, 0.4);
+}
+
+.java-learning-path {
+  margin-bottom: 30px;
+}
+
+.java-learning-path ion-card {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: white;
+}
+
+.java-learning-path h2 {
+  color: #f89820;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.java-level-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px 0;
+  transition: transform 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.java-level-card:hover {
+  transform: translateY(-5px);
+}
+
+.java-beginner {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-left: 4px solid #28a745;
+}
+
+.java-intermediate {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-left: 4px solid #ffc107;
+}
+
+.java-advanced {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  border-left: 4px solid #dc3545;
+}
+
+.java-level-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.java-level-card h3 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.java-level-card p {
+  color: #666;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.java-quick-actions {
+  margin-bottom: 30px;
+}
+
+.java-quick-actions h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.java-action-button {
+  --border-radius: 15px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .java-hero-container {
+    padding: 15px;
+  }
+  
+  .java-hero-section {
+    padding: 40px 15px;
+  }
+  
+  .java-hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .java-hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .java-hero-icon {
+    font-size: 4rem;
+  }
+  
+  .java-features {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .java-feature {
+    margin: 15px 0;
+  }
+  
+  .java-level-card {
+    min-height: 150px;
+    padding: 15px;
+  }
+  
+  .java-level-icon {
+    font-size: 2.5rem;
+  }
+  
+  .java-training-button {
+    font-size: 1.1rem;
+  }
+  
+  .java-action-button {
+    font-size: 1rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .java-hero-container {
+    background: linear-gradient(135deg, #b8860b 0%, #cd853f 100%);
+  }
+  
+  .java-level-card h3 {
+    color: #ffffff;
+  }
+  
+  .java-level-card p {
+    color: #cccccc;
+  }
+  
+  .java-beginner {
+    background: linear-gradient(135deg, #2d5a3d 0%, #3d6d4d 100%);
+  }
+  
+  .java-intermediate {
+    background: linear-gradient(135deg, #5a4d2d 0%, #6d5d3d 100%);
+  }
+  
+  .java-advanced {
+    background: linear-gradient(135deg, #5a2d2d 0%, #6d3d3d 100%);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.java-hero-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.java-action-card {
+  animation: fadeInUp 1s ease-out;
+}
+
+.java-learning-path {
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.java-quick-actions {
+  animation: fadeInUp 1.4s ease-out;
+}

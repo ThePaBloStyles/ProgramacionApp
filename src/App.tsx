@@ -10,9 +10,11 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { homeOutline, codeSlashOutline, chatbubbleEllipsesOutline, libraryOutline } from 'ionicons/icons';
+import { homeOutline, codeSlashOutline, chatbubbleEllipsesOutline, libraryOutline, cafeOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import PythonLearning from './pages/PythonLearning';
+import JavaLearning from './pages/JavaLearning';
+import JavaHero from './pages/JavaHero';
 import AIChat from './pages/AIChat';
 import CodePlayground from './pages/CodePlayground';
 
@@ -59,6 +61,12 @@ const App: React.FC = () => (
           <Route exact path="/python">
             <PythonLearning />
           </Route>
+          <Route exact path="/java">
+            <JavaLearning />
+          </Route>
+          <Route exact path="/java-hero">
+            <JavaHero />
+          </Route>
           <Route exact path="/ai-chat">
             <AIChat />
           </Route>
@@ -77,6 +85,10 @@ const App: React.FC = () => (
           <IonTabButton tab="python" href="/python">
             <IonIcon aria-hidden="true" icon={codeSlashOutline} />
             <IonLabel>Python</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="java" href="/java">
+            <IonIcon aria-hidden="true" icon={cafeOutline} />
+            <IonLabel>Java</IonLabel>
           </IonTabButton>
           <IonTabButton tab="ai-chat" href="/ai-chat">
             <IonIcon aria-hidden="true" icon={chatbubbleEllipsesOutline} />

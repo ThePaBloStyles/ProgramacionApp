@@ -1,0 +1,481 @@
+.java-learning-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-section {
+  margin-bottom: 30px;
+}
+
+.java-hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.java-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.java-hero h1 {
+  color: #f89820;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.java-hero p {
+  color: #666;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.progress-card {
+  background: linear-gradient(135deg, #f89820 0%, #ff6b35 100%);
+  color: white;
+  margin: 20px 0;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.progress-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.progress-info p {
+  margin: 5px 0 0 0;
+  opacity: 0.9;
+}
+
+.progress-badge {
+  font-size: 1.2rem;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.difficulty-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-section h3 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lessons-section {
+  margin-bottom: 40px;
+}
+
+.lesson-card {
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #f89820;
+  background: #ffffff;
+  color: #333333;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(248, 152, 32, 0.2);
+}
+
+.lesson-card.completed {
+  border-left-color: #2dd36f;
+  background: linear-gradient(135deg, rgba(45, 211, 111, 0.1) 0%, rgba(45, 211, 111, 0.05) 100%);
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.lesson-header ion-card-title {
+  color: #f89820;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.lesson-card ion-card-content p {
+  color: #555555;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lesson-meta ion-chip {
+  --background: #f0f0f0;
+  --color: #333333;
+  font-weight: 500;
+  border: 1px solid #d0d0d0;
+}
+
+.lesson-meta ion-chip[color="success"] {
+  --background: #d4edda;
+  --color: #155724;
+  border-color: #c3e6cb;
+}
+
+.lesson-meta ion-chip[color="warning"] {
+  --background: #fff3cd;
+  --color: #856404;
+  border-color: #ffeaa7;
+}
+
+.lesson-meta ion-chip[color="danger"] {
+  --background: #f8d7da;
+  --color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.lesson-meta ion-chip[color="medium"] {
+  --background: #f8f9fa;
+  --color: #6c757d;
+  border-color: #dee2e6;
+}
+
+.lesson-actions {
+  margin-top: 15px;
+}
+
+.achievements-section {
+  margin-bottom: 40px;
+}
+
+.achievement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  min-height: 120px;
+}
+
+.achievement.unlocked {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+  color: #8b4513;
+  transform: scale(1.05);
+}
+
+.achievement.locked {
+  background: #f4f4f4;
+  color: #999;
+  opacity: 0.6;
+}
+
+.achievement ion-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.achievement h4 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+}
+
+.achievement p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.lesson-modal {
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f89820;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #f89820;
+}
+
+.modal-header p {
+  margin: 5px 0 0 0;
+  color: #666;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lesson-content {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.lesson-content p {
+  margin-bottom: 15px;
+}
+
+.code-example {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.code-editor {
+  margin: 20px 0;
+}
+
+.code-textarea {
+  --background: #2d3748;
+  --color: #e2e8f0;
+  --border-color: #4a5568;
+  --border-radius: 8px;
+  --padding: 15px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.code-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.suggestions {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #f89820;
+}
+
+.suggestions h4 {
+  margin: 0 0 10px 0;
+  color: #f89820;
+}
+
+.suggestions code {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .java-learning-container {
+    padding: 15px;
+  }
+  
+  .java-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .java-hero p {
+    font-size: 1rem;
+  }
+  
+  .lesson-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .lesson-meta {
+    margin-top: 10px;
+  }
+  
+  .progress-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .progress-badge {
+    margin-top: 10px;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .modal-header ion-button {
+    margin-top: 10px;
+  }
+  
+  .code-actions {
+    flex-direction: column;
+  }
+}
+
+/* Custom Ionic Overrides */
+ion-segment {
+  --background: #ffffff;
+  --color: #666666;
+  --color-checked: #ffffff;
+  --indicator-color: #f89820;
+  --indicator-color-checked: #f89820;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+ion-segment-button {
+  --color: #666666;
+  --color-checked: #ffffff;
+  --background-checked: #f89820;
+  --border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+ion-segment-button:hover {
+  --color: #f89820;
+}
+
+ion-progress-bar {
+  --progress-background: rgba(255, 255, 255, 0.3);
+}
+
+ion-toast {
+  --color: white;
+}
+
+ion-toast.success {
+  --background: #2dd36f;
+}
+
+ion-toast.warning {
+  --background: #ffc409;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .java-learning-container {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .lesson-card {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
+  
+  .lesson-card ion-card-content p {
+    color: #cccccc;
+  }
+  
+  .lesson-header ion-card-title {
+    color: #f89820;
+  }
+  
+  .difficulty-section {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
+  
+  .difficulty-section h3 {
+    color: #ffffff;
+  }
+  
+  ion-segment {
+    --background: #3d3d3d;
+    --color: #cccccc;
+    --color-checked: #ffffff;
+    --indicator-color: #f89820;
+    border-color: #4d4d4d;
+  }
+  
+  ion-segment-button {
+    --color: #cccccc;
+    --color-checked: #ffffff;
+    --background-checked: #f89820;
+  }
+  
+  ion-segment-button:hover {
+    --color: #f89820;
+  }
+  
+  .lesson-meta ion-chip {
+    --background: #3d3d3d;
+    --color: #cccccc;
+    border-color: #4d4d4d;
+  }
+  
+  .lesson-meta ion-chip[color="success"] {
+    --background: #2d5a3d;
+    --color: #90ee90;
+    border-color: #3d6d4d;
+  }
+  
+  .lesson-meta ion-chip[color="warning"] {
+    --background: #5a4d2d;
+    --color: #ffd700;
+    border-color: #6d5d3d;
+  }
+  
+  .lesson-meta ion-chip[color="danger"] {
+    --background: #5a2d2d;
+    --color: #ff6b6b;
+    border-color: #6d3d3d;
+  }
+  
+  .lesson-meta ion-chip[color="medium"] {
+    --background: #3d3d3d;
+    --color: #aaaaaa;
+    border-color: #4d4d4d;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lesson-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.achievement.unlocked {
+  animation: fadeIn 0.5s ease-out;
+}

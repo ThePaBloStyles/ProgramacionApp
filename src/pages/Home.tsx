@@ -81,19 +81,30 @@ const Home: React.FC = () => {
                 </IonCol>
                 
                 <IonCol size="12" sizeMd="6">
-                  <IonCard className="language-card coming-soon">
+                  <IonCard className="language-card java-card">
                     <IonCardHeader>
                       <div className="card-header">
-                        <IonIcon icon={logoJavascript} className="js-icon" />
-                        <IonCardTitle>JavaScript</IonCardTitle>
+                        <div className="java-icon">☕</div>
+                        <IonCardTitle>Java</IonCardTitle>
                       </div>
                     </IonCardHeader>
                     <IonCardContent>
                       <IonText>
-                        <p>Próximamente: Aprende JavaScript y desarrollo web moderno.</p>
+                        <p>Aprende Java desde cero con programación orientada a objetos y desarrollo empresarial.</p>
                       </IonText>
-                      <IonButton expand="block" color="medium" disabled>
-                        Próximamente
+                      <div className="difficulty-chips">
+                        <IonChip color="success">
+                          <IonLabel>Principiante</IonLabel>
+                        </IonChip>
+                        <IonChip color="warning">
+                          <IonLabel>Intermedio</IonLabel>
+                        </IonChip>
+                        <IonChip color="danger">
+                          <IonLabel>Avanzado</IonLabel>
+                        </IonChip>
+                      </div>
+                      <IonButton expand="block" color="warning" routerLink="/java-hero">
+                        Comenzar Java
                       </IonButton>
                     </IonCardContent>
                   </IonCard>
