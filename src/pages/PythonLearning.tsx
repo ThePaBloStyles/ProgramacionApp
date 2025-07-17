@@ -217,16 +217,25 @@ const PythonLearning: React.FC = () => {
                 <p>Domina uno de los lenguajes más versátiles del mundo</p>
               </IonText>
               
-              <div className="progress-section">
-                <IonText>
-                  <h3>Tu Progreso</h3>
-                  <p>{completedLessons} de {totalLessons} lecciones completadas</p>
-                </IonText>
-                <IonProgressBar value={progressPercentage / 100} color="primary" />
-                <IonText>
-                  <p>{Math.round(progressPercentage)}% completado</p>
-                </IonText>
-              </div>
+              <IonCard className="progress-card">
+                <IonCardContent>
+                  <div className="progress-header">
+                    <IonIcon icon={trophyOutline} />
+                    <IonText>
+                      <h3>Tu Progreso</h3>
+                    </IonText>
+                  </div>
+                  <div className="progress-content">
+                    <IonText>
+                      <p>{completedLessons} de {totalLessons} lecciones completadas</p>
+                    </IonText>
+                    <IonProgressBar value={progressPercentage / 100} color="primary" />
+                    <IonText>
+                      <p>{Math.round(progressPercentage)}% completado</p>
+                    </IonText>
+                  </div>
+                </IonCardContent>
+              </IonCard>
             </div>
           </div>
 

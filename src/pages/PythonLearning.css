@@ -42,6 +42,49 @@
   line-height: 1.6;
 }
 
+.progress-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.progress-header ion-icon {
+  color: #3880ff;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.progress-header h3 {
+  margin: 0;
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.progress-content {
+  padding: 0;
+}
+
+.progress-content p {
+  color: #000000;
+  margin: 8px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.progress-content ion-progress-bar {
+  margin: 10px 0;
+  height: 8px;
+  border-radius: 4px;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -92,8 +135,9 @@
 
 .level-info p {
   margin: 10px 0 0 0;
-  color: #666;
+  color: #000000;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 .progress-card {
@@ -191,7 +235,7 @@
 }
 
 .code-suggestions h4 {
-  color: #495057;
+  color: #000000;
   font-size: 0.9rem;
   margin-bottom: 10px;
   font-weight: 600;
@@ -220,7 +264,7 @@
 }
 
 .suggestion-item span {
-  color: #495057;
+  color: #000000;
   font-size: 0.9rem;
   line-height: 1.4;
 }
@@ -284,11 +328,11 @@ ion-item:hover {
 
 /* Code syntax highlighting simulation */
 .code-block code {
-  color: #333;
+  color: #000000;
 }
 
 .code-block .comment {
-  color: #6a737d;
+  color: #000000;
   font-style: italic;
 }
 
@@ -402,7 +446,33 @@ ion-item:hover {
 
 .achievement-info p {
   margin: 0;
-  color: #6c757d;
+  color: #000000;
   font-size: 0.8rem;
   line-height: 1.3;
+}
+
+/* Estilos para tarjetas de lecciones */
+.lesson-card {
+  background: #ffffff;
+  color: #000000;
+}
+
+.lesson-card h3,
+.lesson-card h4,
+.lesson-card p,
+.lesson-card span,
+.lesson-card div {
+  color: #000000 !important;
+}
+
+.lesson-card ion-card-title {
+  color: #000000 !important;
+}
+
+.lesson-card ion-card-content {
+  color: #000000 !important;
+}
+
+.lesson-card ion-card-content p {
+  color: #000000 !important;
 }
