@@ -13,6 +13,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { homeOutline, codeSlashOutline, chatbubbleEllipsesOutline, libraryOutline, cafeOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import PythonLearning from './pages/PythonLearning';
+import PythonHero from './pages/PythonHero';
 import JavaLearning from './pages/JavaLearning';
 import JavaHero from './pages/JavaHero';
 import AIChat from './pages/AIChat';
@@ -60,6 +61,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/python">
             <PythonLearning />
+          </Route>
+          <Route exact path="/python-hero">
+            <PythonHero />
           </Route>
           <Route exact path="/java">
             <JavaLearning />

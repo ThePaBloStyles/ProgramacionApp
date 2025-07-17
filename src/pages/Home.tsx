@@ -73,7 +73,7 @@ const Home: React.FC = () => {
                           <IonLabel>Avanzado</IonLabel>
                         </IonChip>
                       </div>
-                      <IonButton expand="block" color="primary" routerLink="/python">
+                      <IonButton expand="block" color="primary" routerLink="/python-hero">
                         Comenzar Python
                       </IonButton>
                     </IonCardContent>
