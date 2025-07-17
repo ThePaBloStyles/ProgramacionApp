@@ -22,9 +22,12 @@ import {
   codeSlash, 
   chevronBackOutline,
   timeOutline,
-  bookOutline
+  bookOutline,
+  school
 } from 'ionicons/icons';
 import { useParams, useHistory } from 'react-router-dom';
+import QuizComponent from '../components/QuizComponent';
+import { javaQuizzes, pythonQuizzes } from '../data/quizData';
 import './LessonDetail.css';
 
 interface Lesson {
@@ -52,6 +55,9 @@ const LessonDetail: React.FC = () => {
   const [userCode, setUserCode] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [quizScore, setQuizScore] = useState(0);
 
   // Lecciones de Java completas
   const javaLessons: Lesson[] = [
@@ -1824,13 +1830,33 @@ print(f"Datos restaurados: {datos_restaurados}")`,
   };
 
   const handleCompleteLesson = () => {
-    setToastMessage('¡Lección completada! Excelente trabajo.');
-    setShowToast(true);
+    // Mostrar quiz antes de completar la lección
+    setShowQuiz(true);
+  };
+
+  const handleQuizComplete = (score: number) => {
+    setQuizScore(score);
+    setQuizCompleted(true);
+    setShowQuiz(false);
     
-    // Aquí podrías actualizar el estado global o localStorage
-    setTimeout(() => {
-      history.push('/tabs/lessons');
-    }, 1500);
+    if (score >= 70) {
+      setToastMessage('¡Lección completada! Excelente trabajo.');
+      setShowToast(true);
+      
+      // Aquí podrías actualizar el estado global o localStorage
+      setTimeout(() => {
+        history.push('/tabs/lessons');
+      }, 1500);
+    } else {
+      setToastMessage('Necesitas obtener al menos 70% para completar la lección. ¡Revisa el material!');
+      setShowToast(true);
+    }
+  };
+
+  const retakeQuiz = () => {
+    setShowQuiz(true);
+    setQuizCompleted(false);
+    setQuizScore(0);
   };
 
   if (!lesson) {
@@ -1957,13 +1983,51 @@ print(f"Datos restaurados: {datos_restaurados}")`,
                     Ejecutar código
                   </IonButton>
                   <IonButton expand="block" onClick={handleCompleteLesson} color="success">
-                    <IonIcon icon={checkmarkCircle} slot="start" />
-                    Completar lección
+                    <IonIcon icon={school} slot="start" />
+                    Tomar Quiz y Completar Lección
                   </IonButton>
                 </div>
               </div>
             </IonCardContent>
           </IonCard>
+
+          {/* Quiz */}
+          {showQuiz && (
+            <QuizComponent
+              questions={language === 'python' ? pythonQuizzes[parseInt(lessonId)] || [] : javaQuizzes[parseInt(lessonId)] || []}
+              title={`Quiz: ${lesson.title}`}
+              onComplete={handleQuizComplete}
+              passingScore={70}
+            />
+          )}
+
+          {/* Resultado del Quiz */}
+          {quizCompleted && (
+            <IonCard className="quiz-result-card">
+              <IonCardContent>
+                <div className="quiz-result-header">
+                  <IonIcon 
+                    icon={quizScore >= 70 ? checkmarkCircle : school} 
+                    color={quizScore >= 70 ? "success" : "warning"}
+                    style={{ fontSize: '32px' }}
+                  />
+                  <IonText>
+                    <h3>Resultado del Quiz</h3>
+                    <p>Tu puntuación: {quizScore}%</p>
+                  </IonText>
+                </div>
+                {quizScore < 70 && (
+                  <div className="quiz-retry-section">
+                    <p>Necesitas al menos 70% para completar la lección.</p>
+                    <IonButton expand="block" onClick={retakeQuiz} color="warning">
+                      <IonIcon icon={school} slot="start" />
+                      Volver a tomar el Quiz
+                    </IonButton>
+                  </div>
+                )}
+              </IonCardContent>
+            </IonCard>
+          )}
         </div>
 
         <IonToast
