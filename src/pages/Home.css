@@ -1,0 +1,142 @@
+.home-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.hero-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  color: var(--ion-color-primary);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.language-card {
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+}
+
+.python-card {
+  border-left: 4px solid #3776ab;
+}
+
+.coming-soon {
+  opacity: 0.7;
+  border-left: 4px solid #f39c12;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.python-icon {
+  font-size: 2rem;
+}
+
+.js-icon {
+  font-size: 2rem;
+  color: #f7df1e;
+}
+
+.difficulty-chips {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+}
+
+.feature-content {
+  padding: 30px 20px;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: var(--ion-color-primary);
+  margin-bottom: 15px;
+}
+
+.feature-card ion-card-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--ion-color-dark);
+}
+
+.feature-card p {
+  color: var(--ion-color-medium);
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-section p {
+    font-size: 1rem;
+  }
+  
+  .home-container {
+    padding: 15px;
+  }
+  
+  .hero-section {
+    padding: 30px 15px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .hero-section {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+  }
+  
+  .feature-card ion-card-title {
+    color: var(--ion-color-light);
+  }
+}

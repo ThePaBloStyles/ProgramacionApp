@@ -10,10 +10,11 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { homeOutline, codeSlashOutline, chatbubbleEllipsesOutline, libraryOutline } from 'ionicons/icons';
+import Home from './pages/Home';
+import PythonLearning from './pages/PythonLearning';
+import AIChat from './pages/AIChat';
+import CodePlayground from './pages/CodePlayground';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -52,31 +53,38 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <Home />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/python">
+            <PythonLearning />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route exact path="/ai-chat">
+            <AIChat />
+          </Route>
+          <Route path="/playground">
+            <CodePlayground />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon aria-hidden="true" icon={homeOutline} />
+            <IonLabel>Inicio</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="python" href="/python">
+            <IonIcon aria-hidden="true" icon={codeSlashOutline} />
+            <IonLabel>Python</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="ai-chat" href="/ai-chat">
+            <IonIcon aria-hidden="true" icon={chatbubbleEllipsesOutline} />
+            <IonLabel>AI Chat</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="playground" href="/playground">
+            <IonIcon aria-hidden="true" icon={libraryOutline} />
+            <IonLabel>Playground</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
