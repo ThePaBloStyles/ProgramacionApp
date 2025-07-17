@@ -111,6 +111,7 @@
   height: 8px;
   border-radius: 4px;
   margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .stats-grid {
@@ -178,6 +179,50 @@
   font-size: 14px;
   margin-bottom: 15px;
   min-height: 200px;
+}
+
+.code-suggestions {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.code-suggestions h4 {
+  color: #495057;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f8f9fa;
+  border-color: #3880ff;
+}
+
+.suggestion-item ion-icon {
+  color: #ffc409;
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.suggestion-item span {
+  color: #495057;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .expected-output {
@@ -254,4 +299,110 @@ ion-item:hover {
 
 .code-block .string {
   color: #032f62;
+}
+
+/* Estilos para retos y logros */
+.achievements-card {
+  margin-top: 20px;
+}
+
+.challenges-section, .achievements-section {
+  margin-bottom: 30px;
+}
+
+.challenges-section h4, .achievements-section h4 {
+  color: #495057;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.challenge-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.challenge-item:hover {
+  border-color: #3880ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-item.completed {
+  border-color: #28a745;
+  background: #f8fff9;
+}
+
+.challenge-icon {
+  margin-right: 15px;
+}
+
+.challenge-icon ion-icon {
+  font-size: 32px;
+}
+
+.challenge-info {
+  flex: 1;
+}
+
+.challenge-info h5 {
+  margin: 0 0 5px 0;
+  color: #495057;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.challenge-info p {
+  margin: 0 0 10px 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.achievement-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.achievement-item.unlocked {
+  border-color: #ffc409;
+  background: #fffdf5;
+}
+
+.achievement-item.locked {
+  opacity: 0.5;
+}
+
+.achievement-icon {
+  margin-bottom: 10px;
+}
+
+.achievement-icon ion-icon {
+  font-size: 28px;
+}
+
+.achievement-info h6 {
+  margin: 0 0 5px 0;
+  color: #495057;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.achievement-info p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.8rem;
+  line-height: 1.3;
 }

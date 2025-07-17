@@ -1,10 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonItem,
   IonLabel,
   IonInput,
@@ -277,18 +274,7 @@ Como soy una simulación de IA, puedo ayudarte con:
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>AI Assistant</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen ref={contentRef}>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">AI Chat</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <div className="chat-container">
           {/* Quick Questions */}
           <div className="quick-questions">

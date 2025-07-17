@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonCard,
   IonCardHeader,
   IonCardTitle,
@@ -15,7 +12,6 @@ import {
   IonItem,
   IonLabel,
   IonChip,
-  IonProgressBar,
   IonText,
   IonGrid,
   IonRow,
@@ -25,7 +21,8 @@ import {
   IonToast,
   IonSegment,
   IonSegmentButton,
-  IonBadge
+  IonBadge,
+  IonProgressBar
 } from '@ionic/react';
 import { 
   playCircle, 
@@ -37,7 +34,12 @@ import {
   send,
   bulb,
   logoApple,
-  fitness
+  fitness,
+  trophy,
+  medal,
+  star,
+  flash,
+  ribbon
 } from 'ionicons/icons';
 import './PythonLearning.css';
 
@@ -62,6 +64,10 @@ const PythonLearning: React.FC = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
   const [showTraining, setShowTraining] = useState(false);
+  const [codeSuggestions, setCodeSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
+  const [completedChallenges, setCompletedChallenges] = useState<string[]>([]);
 
   const lessons: Lesson[] = [
     // LECCIONES PRINCIPIANTES
@@ -1021,6 +1027,101 @@ def generar_reporte(departamento):
     }
   ];
 
+  // Retos de programación
+  const challenges = [
+    {
+      id: 'first-hello',
+      title: 'Primer Hola Mundo',
+      description: 'Completa tu primer programa Python',
+      difficulty: 'beginner',
+      points: 50,
+      icon: star,
+      unlocked: true
+    },
+    {
+      id: 'variables-master',
+      title: 'Maestro de Variables',
+      description: 'Completa 3 lecciones sobre variables',
+      difficulty: 'beginner',
+      points: 100,
+      icon: trophy,
+      unlocked: true
+    },
+    {
+      id: 'loop-champion',
+      title: 'Campeón de Bucles',
+      description: 'Domina todos los tipos de bucles',
+      difficulty: 'intermediate',
+      points: 150,
+      icon: flash,
+      unlocked: true
+    },
+    {
+      id: 'function-guru',
+      title: 'Gurú de Funciones',
+      description: 'Crea 5 funciones diferentes',
+      difficulty: 'intermediate',
+      points: 200,
+      icon: medal,
+      unlocked: true
+    },
+    {
+      id: 'oop-master',
+      title: 'Maestro de POO',
+      description: 'Completa todas las lecciones de POO',
+      difficulty: 'advanced',
+      points: 300,
+      icon: ribbon,
+      unlocked: false
+    }
+  ];
+
+  // Logros disponibles
+  const achievements = [
+    {
+      id: 'first-lesson',
+      title: 'Primer Paso',
+      description: 'Completaste tu primera lección',
+      icon: star,
+      unlocked: false
+    },
+    {
+      id: 'week-streak',
+      title: 'Semana Activa',
+      description: 'Programaste durante 7 días seguidos',
+      icon: flash,
+      unlocked: false
+    },
+    {
+      id: 'speed-learner',
+      title: 'Aprendiz Veloz',
+      description: 'Completaste 3 lecciones en un día',
+      icon: trophy,
+      unlocked: false
+    },
+    {
+      id: 'help-seeker',
+      title: 'Buscador de Ayuda',
+      description: 'Usaste la IA 10 veces',
+      icon: bulb,
+      unlocked: false
+    },
+    {
+      id: 'perfectionist',
+      title: 'Perfeccionista',
+      description: 'Completaste 5 lecciones sin errores',
+      icon: medal,
+      unlocked: false
+    },
+    {
+      id: 'python-master',
+      title: 'Maestro Python',
+      description: 'Completaste todas las lecciones',
+      icon: ribbon,
+      unlocked: false
+    }
+  ];
+
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': return 'success';
@@ -1036,13 +1137,122 @@ def generar_reporte(departamento):
     setIsModalOpen(true);
   };
 
+  const generateCodeSuggestions = (code: string, lessonContext: string) => {
+    const suggestions: string[] = [];
+    
+    // Sugerencias basadas en el contexto de la lección
+    if (lessonContext.includes('print') && !code.includes('print')) {
+      suggestions.push("Intenta usar print() para mostrar el resultado");
+    }
+    
+    if (lessonContext.includes('variable') && !code.includes('=')) {
+      suggestions.push("Recuerda crear una variable usando el signo =");
+    }
+    
+    if (lessonContext.includes('if') && !code.includes('if')) {
+      suggestions.push("Usa una estructura if para la condición");
+    }
+    
+    if (lessonContext.includes('for') && !code.includes('for')) {
+      suggestions.push("Considera usar un bucle for para iterar");
+    }
+    
+    if (lessonContext.includes('while') && !code.includes('while')) {
+      suggestions.push("Un bucle while podría ser útil aquí");
+    }
+    
+    if (lessonContext.includes('función') && !code.includes('def')) {
+      suggestions.push("Define una función usando def");
+    }
+    
+    if (lessonContext.includes('lista') && !code.includes('[')) {
+      suggestions.push("Crea una lista usando corchetes []");
+    }
+    
+    if (lessonContext.includes('input') && !code.includes('input')) {
+      suggestions.push("Usa input() para obtener datos del usuario");
+    }
+    
+    // Sugerencias para errores comunes
+    if (code.includes('print(') && !code.includes('"') && !code.includes("'")) {
+      suggestions.push("Agrega comillas para el texto: print('mi texto')");
+    }
+    
+    if (code.includes('=') && code.includes('if') && !code.includes('==')) {
+      suggestions.push("Para comparar usa == en lugar de =");
+    }
+    
+    return suggestions;
+  };
+
+  const checkCodeAndSuggest = (code: string) => {
+    if (!selectedLesson) return;
+    
+    const suggestions = generateCodeSuggestions(code, selectedLesson.content);
+    setCodeSuggestions(suggestions);
+    setShowSuggestions(suggestions.length > 0);
+  };
+
   const runCode = () => {
-    // Simulación de ejecución de código
-    setToastMessage("Código ejecutado correctamente! 🎉");
+    if (!userCode.trim()) {
+      setToastMessage("Por favor, escribe algo de código para ejecutar.");
+      setShowToast(true);
+      return;
+    }
+    
+    // Análisis básico del código
+    const codeAnalysis = analyzeCode(userCode);
+    
+    if (codeAnalysis.hasErrors) {
+      setToastMessage(`⚠️ Posibles errores encontrados: ${codeAnalysis.errors.join(", ")}`);
+    } else {
+      setToastMessage("Código ejecutado correctamente! 🎉");
+    }
+    
     setShowToast(true);
     
     // Aquí normalmente enviarías el código a un servidor para ejecutarlo
     // Por ahora solo mostramos un mensaje de éxito
+  };
+
+  const analyzeCode = (code: string) => {
+    const errors: string[] = [];
+    const warnings: string[] = [];
+    
+    // Análisis básico de sintaxis común
+    if (code.includes('print(') && !code.includes('print("') && !code.includes("print('")) {
+      errors.push("print() necesita comillas para strings");
+    }
+    
+    if (code.includes('=') && !code.includes('==') && code.includes('if')) {
+      // Buscar posibles errores de asignación en if
+      const lines = code.split('\n');
+      lines.forEach(line => {
+        if (line.includes('if') && line.includes('=') && !line.includes('==')) {
+          warnings.push("¿Quisiste usar '==' en lugar de '='?");
+        }
+      });
+    }
+    
+    // Verificar indentación básica
+    if (code.includes('if') || code.includes('for') || code.includes('while')) {
+      const lines = code.split('\n');
+      let insideBlock = false;
+      lines.forEach(line => {
+        if (line.trim().endsWith(':')) {
+          insideBlock = true;
+        } else if (insideBlock && line.trim() && !line.startsWith(' ') && !line.startsWith('\t')) {
+          errors.push("Problemas de indentación");
+          insideBlock = false;
+        }
+      });
+    }
+    
+    return {
+      hasErrors: errors.length > 0,
+      errors: errors,
+      warnings: warnings
+    };
   };
 
   const markAsCompleted = () => {
@@ -1057,8 +1267,47 @@ def generar_reporte(departamento):
   };
 
   const askAI = () => {
-    setToastMessage("Pregunta enviada a la IA. Revisa el chat para la respuesta.");
+    if (!selectedLesson) return;
+    
+    // Preparar el contexto para la IA
+    const context = {
+      lesson: selectedLesson.title,
+      description: selectedLesson.description,
+      codeExample: selectedLesson.codeExample,
+      exercise: selectedLesson.exercise,
+      userCode: userCode,
+      expectedOutput: selectedLesson.expectedOutput
+    };
+    
+    // Simular envío a la IA con contexto específico
+    const aiPrompt = `
+CONTEXTO DE LA LECCIÓN:
+- Título: ${context.lesson}
+- Descripción: ${context.description}
+
+CÓDIGO DEL USUARIO:
+${context.userCode}
+
+RESULTADO ESPERADO:
+${context.expectedOutput}
+
+CÓDIGO DE EJEMPLO:
+${context.codeExample}
+
+Por favor, analiza el código del usuario y proporciona:
+1. Errores encontrados
+2. Código corregido
+3. Explicación de las correcciones
+4. Sugerencias de mejora
+`;
+
+    // Aquí normalmente enviarías este prompt a la API de OpenAI
+    // Por ahora simulamos la respuesta
+    setToastMessage("Pregunta enviada a la IA con contexto de la lección. Revisa el chat para la respuesta detallada.");
     setShowToast(true);
+    
+    // Opcional: Redirigir al chat con el contexto
+    console.log("Contexto enviado a la IA:", aiPrompt);
   };
 
   const filteredLessons = lessons.filter(lesson => lesson.difficulty === selectedDifficulty);
@@ -1097,24 +1346,7 @@ def generar_reporte(departamento):
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>
-            {showTraining ? 'Entrenamiento Python' : 'Aprender Python'}
-          </IonTitle>
-          {showTraining && (
-            <IonButton fill="clear" slot="end" onClick={goBackToMenu}>
-              <IonIcon icon={close} />
-            </IonButton>
-          )}
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Python</IonTitle>
-          </IonToolbar>
-        </IonHeader>
 
         {!showTraining ? (
           // Pantalla principal con botón de entrenamiento
@@ -1232,6 +1464,66 @@ def generar_reporte(departamento):
             </IonCardContent>
           </IonCard>
 
+          {/* Retos y Logros */}
+          <IonCard className="achievements-card">
+            <IonCardHeader>
+              <IonCardTitle>
+                <IonIcon icon={trophy} /> Retos y Logros
+              </IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              {/* Retos activos */}
+              <div className="challenges-section">
+                <h4>🎯 Retos Activos</h4>
+                <IonGrid>
+                  <IonRow>
+                    {challenges.filter(challenge => challenge.unlocked).map((challenge) => (
+                      <IonCol size="12" sizeMd="6" key={challenge.id}>
+                        <div className={`challenge-item ${completedChallenges.includes(challenge.id) ? 'completed' : ''}`}>
+                          <div className="challenge-icon">
+                            <IonIcon icon={challenge.icon} color={completedChallenges.includes(challenge.id) ? 'success' : 'warning'} />
+                          </div>
+                          <div className="challenge-info">
+                            <h5>{challenge.title}</h5>
+                            <p>{challenge.description}</p>
+                            <IonBadge color={challenge.difficulty === 'beginner' ? 'success' : challenge.difficulty === 'intermediate' ? 'warning' : 'danger'}>
+                              {challenge.points} pts
+                            </IonBadge>
+                          </div>
+                        </div>
+                      </IonCol>
+                    ))}
+                  </IonRow>
+                </IonGrid>
+              </div>
+
+              {/* Logros desbloqueados */}
+              <div className="achievements-section">
+                <h4>🏆 Logros Desbloqueados</h4>
+                <IonGrid>
+                  <IonRow>
+                    {achievements.map((achievement) => (
+                      <IonCol size="6" sizeMd="4" key={achievement.id}>
+                        <div className={`achievement-item ${unlockedAchievements.includes(achievement.id) ? 'unlocked' : 'locked'}`}>
+                          <div className="achievement-icon">
+                            <IonIcon 
+                              icon={achievement.icon} 
+                              color={unlockedAchievements.includes(achievement.id) ? 'warning' : 'medium'} 
+                            />
+                          </div>
+                          <div className="achievement-info">
+                            <h6>{achievement.title}</h6>
+                            <p>{achievement.description}</p>
+                          </div>
+                        </div>
+                      </IonCol>
+                    ))}
+                  </IonRow>
+                </IonGrid>
+              </div>
+            </IonCardContent>
+          </IonCard>
+
           {/* Difficulty Selector */}
           <IonCard>
             <IonCardHeader>
@@ -1322,21 +1614,20 @@ def generar_reporte(departamento):
 
         {/* Lesson Modal */}
         <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>{selectedLesson?.title}</IonTitle>
-              <IonButton fill="clear" slot="end" onClick={() => setIsModalOpen(false)}>
-                <IonIcon icon={close} />
-              </IonButton>
-            </IonToolbar>
-          </IonHeader>
           <IonContent>
             {selectedLesson && (
               <div className="lesson-content">
+                {/* Close button */}
+                <div style={{ textAlign: 'right', padding: '10px' }}>
+                  <IonButton fill="clear" onClick={() => setIsModalOpen(false)}>
+                    <IonIcon icon={close} />
+                  </IonButton>
+                </div>
+                
                 {/* Theory Section */}
                 <IonCard>
                   <IonCardHeader>
-                    <IonCardTitle>📚 Teoría</IonCardTitle>
+                    <IonCardTitle>📚 {selectedLesson.title}</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                     <div dangerouslySetInnerHTML={{ __html: selectedLesson.content }} />
@@ -1365,11 +1656,27 @@ def generar_reporte(departamento):
                   <IonCardContent>
                     <IonTextarea
                       value={userCode}
-                      onIonInput={(e) => setUserCode(e.detail.value!)}
+                      onIonInput={(e) => {
+                        setUserCode(e.detail.value!);
+                        checkCodeAndSuggest(e.detail.value!);
+                      }}
                       placeholder="Escribe tu código aquí..."
                       className="code-editor"
                       rows={10}
                     />
+                    
+                    {/* Sugerencias de código */}
+                    {showSuggestions && codeSuggestions.length > 0 && (
+                      <div className="code-suggestions">
+                        <h4>💡 Sugerencias:</h4>
+                        {codeSuggestions.map((suggestion, index) => (
+                          <div key={index} className="suggestion-item">
+                            <IonIcon icon={bulb} />
+                            <span>{suggestion}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     <IonGrid>
                       <IonRow>
                         <IonCol size="12" sizeMd="4">

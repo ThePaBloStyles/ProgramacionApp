@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonButton,
   IonIcon,
   IonTextarea,
@@ -306,18 +303,7 @@ Memoria utilizada: 12.3 MB
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Code Playground</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Playground</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <div className="playground-container">
           {/* Toolbar */}
           <IonCard className="toolbar-card">
@@ -468,16 +454,15 @@ Memoria utilizada: 12.3 MB
 
         {/* Examples Modal */}
         <IonModal isOpen={showExamples} onDidDismiss={() => setShowExamples(false)}>
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Ejemplos de Código</IonTitle>
-              <IonButton fill="clear" slot="end" onClick={() => setShowExamples(false)}>
-                <IonIcon icon={close} />
-              </IonButton>
-            </IonToolbar>
-          </IonHeader>
           <IonContent>
             <div className="examples-container">
+              {/* Close button */}
+              <div style={{ textAlign: 'right', padding: '10px' }}>
+                <IonButton fill="clear" onClick={() => setShowExamples(false)}>
+                  <IonIcon icon={close} />
+                </IonButton>
+              </div>
+              
               <IonList>
                 {codeExamples.map((example) => (
                   <IonItem key={example.id} button onClick={() => loadExample(example)}>
