@@ -36,32 +36,65 @@ import {
 } from 'ionicons/icons';
 import './JavaLearning.css';
 
+/**
+ * Interfaz que define la estructura de una lección de Java
+ * @interface Lesson
+ */
 interface Lesson {
+  /** ID único de la lección */
   id: number;
+  /** Título de la lección */
   title: string;
+  /** Descripción breve de la lección */
   description: string;
+  /** Nivel de dificultad de la lección */
   difficulty: 'beginner' | 'intermediate' | 'advanced';
+  /** Duración estimada en minutos */
   duration: number;
+  /** Estado de completitud de la lección */
   completed: boolean;
+  /** Contenido teórico de la lección */
   content: string;
+  /** Ejemplo de código para demostrar el concepto */
   codeExample: string;
+  /** Ejercicio práctico para el estudiante */
   exercise: string;
+  /** Salida esperada del ejercicio */
   expectedOutput: string;
 }
 
+/**
+ * Componente principal para el aprendizaje de Java
+ * Proporciona un sistema completo de lecciones interactivas con diferentes niveles de dificultad
+ * @component
+ * @returns {JSX.Element} Componente de aprendizaje de Java
+ */
 const JavaLearning: React.FC = () => {
+  // Estados para el manejo de lecciones y modal
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userCode, setUserCode] = useState('');
+  
+  // Estados para notificaciones y mensajes
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  
+  // Estados para filtrado y navegación
   const [selectedDifficulty, setSelectedDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
   const [showTraining, setShowTraining] = useState(false);
+  
+  // Estados para sistema de ayuda y sugerencias
   const [codeSuggestions, setCodeSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  
+  // Estados para sistema de logros y progreso
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
   const [completedChallenges, setCompletedChallenges] = useState<string[]>([]);
 
+  /**
+   * Array de lecciones de Java organizadas por nivel de dificultad
+   * Incluye contenido teórico, ejemplos de código y ejercicios prácticos
+   */
   const lessons: Lesson[] = [
     // Principiante
     {
@@ -506,6 +539,10 @@ class EdadInvalidaException extends Exception {
     }
   ];
 
+  /**
+   * Configuración de logros disponibles en el sistema
+   * Cada logro tiene un ID único, título y descripción
+   */
   const achievements = [
     { id: 'first_lesson', title: 'Primera Lección', description: 'Completaste tu primera lección' },
     { id: 'java_master', title: 'Maestro Java', description: 'Completaste 5 lecciones' },
@@ -513,17 +550,26 @@ class EdadInvalidaException extends Exception {
     { id: 'problem_solver', title: 'Solucionador', description: 'Resolviste 3 ejercicios seguidos' }
   ];
 
+  // Cálculos de progreso y filtrado
   const filteredLessons = lessons.filter(lesson => lesson.difficulty === selectedDifficulty);
   const completedLessons = lessons.filter(lesson => lesson.completed).length;
   const totalLessons = lessons.length;
   const progressPercentage = (completedLessons / totalLessons) * 100;
 
+  /**
+   * Abre una lección específica en el modal
+   * @param {Lesson} lesson - La lección a abrir
+   */
   const openLesson = (lesson: Lesson) => {
     setSelectedLesson(lesson);
     setUserCode(lesson.codeExample);
     setIsModalOpen(true);
   };
 
+  /**
+   * Verifica el código ingresado por el usuario
+   * Simula la validación del código y actualiza el progreso
+   */
   const checkCode = () => {
     if (selectedLesson) {
       // Simulación de verificación de código
@@ -553,6 +599,10 @@ class EdadInvalidaException extends Exception {
     }
   };
 
+  /**
+   * Verifica y otorga logros basados en el progreso del usuario
+   * Actualiza los logros desbloqueados cuando se cumplen las condiciones
+   */
   const checkAchievements = () => {
     const newAchievements = [];
     
@@ -569,6 +619,10 @@ class EdadInvalidaException extends Exception {
     }
   };
 
+  /**
+   * Genera sugerencias de código para ayudar al usuario
+   * Muestra fragmentos de código comunes de Java
+   */
   const getSuggestions = () => {
     const suggestions = [
       'public class MiClase {',
@@ -585,6 +639,11 @@ class EdadInvalidaException extends Exception {
     setShowSuggestions(true);
   };
 
+  /**
+   * Obtiene el color asociado a un nivel de dificultad
+   * @param {string} difficulty - Nivel de dificultad
+   * @returns {string} Color correspondiente
+   */
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': return 'success';
@@ -594,6 +653,11 @@ class EdadInvalidaException extends Exception {
     }
   };
 
+  /**
+   * Obtiene la etiqueta en español para un nivel de dificultad
+   * @param {string} difficulty - Nivel de dificultad
+   * @returns {string} Etiqueta en español
+   */
   const getDifficultyLabel = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': return 'Principiante';
