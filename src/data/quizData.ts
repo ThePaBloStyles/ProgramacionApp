@@ -1084,7 +1084,159 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
       explanation: "ZeroDivisionError se produce cuando se intenta dividir un número por cero."
     }
   ],
-  15: [ // Examen Final Python
+  13: [ // Programación Orientada a Objetos
+    {
+      id: 1,
+      question: "¿Cuál es la sintaxis correcta para definir una clase en Python?",
+      options: [
+        "class MiClase:",
+        "def MiClase():",
+        "class MiClase():",
+        "create MiClase:"
+      ],
+      correctAnswer: 0,
+      explanation: "La sintaxis correcta es 'class MiClase:' seguido de la definición de la clase."
+    },
+    {
+      id: 2,
+      question: "¿Qué representa 'self' en un método de clase?",
+      options: [
+        "La clase actual",
+        "La instancia actual del objeto",
+        "Una variable global",
+        "Un método especial"
+      ],
+      correctAnswer: 1,
+      explanation: "self es una referencia a la instancia actual del objeto, permitiendo acceso a sus atributos y métodos."
+    },
+    {
+      id: 3,
+      question: "¿Cuál es el método constructor en Python?",
+      options: [
+        "__new__",
+        "__init__",
+        "__create__",
+        "constructor"
+      ],
+      correctAnswer: 1,
+      explanation: "__init__ es el método constructor que se ejecuta automáticamente cuando se crea una instancia."
+    }
+  ],
+  14: [ // Módulos y Paquetes
+    {
+      id: 1,
+      question: "¿Cómo importas una función específica de un módulo en Python?",
+      options: [
+        "import módulo.función",
+        "from módulo import función",
+        "get función from módulo",
+        "módulo.import función"
+      ],
+      correctAnswer: 1,
+      explanation: "La sintaxis 'from módulo import función' importa una función específica del módulo."
+    },
+    {
+      id: 2,
+      question: "¿Qué archivo indica que un directorio es un paquete de Python?",
+      options: [
+        "__package__.py",
+        "__init__.py",
+        "package.py",
+        "module.py"
+      ],
+      correctAnswer: 1,
+      explanation: "__init__.py es el archivo que convierte un directorio en un paquete de Python."
+    },
+    {
+      id: 3,
+      question: "¿Cómo crear un alias para un módulo importado?",
+      options: [
+        "import módulo alias nombre",
+        "import módulo as nombre",
+        "import módulo = nombre",
+        "from módulo as nombre"
+      ],
+      correctAnswer: 1,
+      explanation: "La sintaxis 'import módulo as nombre' crea un alias para el módulo importado."
+    }
+  ],
+  15: [ // Decoradores y Generadores
+    {
+      id: 1,
+      question: "¿Qué es un decorador en Python?",
+      options: [
+        "Una función que modifica otra función",
+        "Un tipo de variable",
+        "Un método de clase",
+        "Un operador especial"
+      ],
+      correctAnswer: 0,
+      explanation: "Un decorador es una función que toma otra función como argumento y extiende su funcionalidad."
+    },
+    {
+      id: 2,
+      question: "¿Qué palabra clave se usa para crear un generador?",
+      options: [
+        "return",
+        "yield",
+        "generate",
+        "next"
+      ],
+      correctAnswer: 1,
+      explanation: "yield es la palabra clave que convierte una función en un generador."
+    },
+    {
+      id: 3,
+      question: "¿Cuál es la principal ventaja de los generadores?",
+      options: [
+        "Son más rápidos",
+        "Usan menos memoria",
+        "Son más legibles",
+        "Evitan errores"
+      ],
+      correctAnswer: 1,
+      explanation: "Los generadores son eficientes en memoria porque producen valores bajo demanda."
+    }
+  ],
+  16: [ // Programación Funcional Avanzada
+    {
+      id: 1,
+      question: "¿Qué hace la función map() en Python?",
+      options: [
+        "Filtra elementos de una secuencia",
+        "Aplica una función a cada elemento de una secuencia",
+        "Reduce una secuencia a un valor",
+        "Crea un diccionario"
+      ],
+      correctAnswer: 1,
+      explanation: "map() aplica una función a cada elemento de una secuencia y devuelve un objeto map."
+    },
+    {
+      id: 2,
+      question: "¿Cuál es la sintaxis correcta para una función lambda?",
+      options: [
+        "lambda x: x * 2",
+        "lambda (x) => x * 2",
+        "lambda x -> x * 2",
+        "lambda: x * 2"
+      ],
+      correctAnswer: 0,
+      explanation: "La sintaxis correcta es 'lambda argumentos: expresión'."
+    },
+    {
+      id: 3,
+      question: "¿Qué hace la función filter() en Python?",
+      options: [
+        "Aplica una función a cada elemento",
+        "Filtra elementos que cumplen una condición",
+        "Ordena una secuencia",
+        "Convierte tipos de datos"
+      ],
+      correctAnswer: 1,
+      explanation: "filter() devuelve elementos de una secuencia que cumplen una condición dada."
+    }
+  ],
+  17: [ // Examen Final Python - Ampliado y Mejorado
     {
       id: 1,
       question: "¿Cuál es la principal diferencia entre listas y tuplas en Python?",
@@ -1147,7 +1299,7 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
     },
     {
       id: 6,
-      question: "Ejercicio Práctico: ¿Cuál sería el resultado de ejecutar este código?\n\nnumeros = [1, 2, 3, 4, 5]\nresultado = [x * 2 for x in numeros if x % 2 == 0]\nprint(resultado)",
+      question: "¿Cuál es el resultado de este código?\n\nnumeros = [1, 2, 3, 4, 5]\nresultado = [x * 2 for x in numeros if x % 2 == 0]\nprint(resultado)",
       options: [
         "[2, 4, 6, 8, 10]",
         "[4, 8]",
@@ -1159,7 +1311,7 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
     },
     {
       id: 7,
-      question: "Ejercicio Práctico: Si defines una función que calcula el factorial de un número, ¿cuál sería el resultado de factorial(4)?",
+      question: "Si defines una función que calcula el factorial de un número, ¿cuál sería el resultado de factorial(4)?",
       options: [
         "10",
         "16",
@@ -1171,7 +1323,7 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
     },
     {
       id: 8,
-      question: "Ejercicio Práctico: ¿Cuál es el resultado de este código?\n\ndiccionario = {'a': 1, 'b': 2, 'c': 3}\nprint(len(diccionario.keys()))",
+      question: "¿Cuál es el resultado de este código?\n\ndiccionario = {'a': 1, 'b': 2, 'c': 3}\nprint(len(diccionario.keys()))",
       options: [
         "3",
         "6",
@@ -1183,7 +1335,7 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
     },
     {
       id: 9,
-      question: "Ejercicio Práctico: ¿Cuál es el resultado de 'Python'[::-1]?",
+      question: "¿Cuál es el resultado de 'Python'[::-1]?",
       options: [
         "Python",
         "nohtyP",
@@ -1195,7 +1347,7 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
     },
     {
       id: 10,
-      question: "Ejercicio Práctico: ¿Qué imprime este código?\n\nfor i in range(3):\n    if i == 1:\n        continue\n    print(i)",
+      question: "¿Qué imprime este código?\n\nfor i in range(3):\n    if i == 1:\n        continue\n    print(i)",
       options: [
         "0 1 2",
         "0 2",
@@ -1204,6 +1356,126 @@ export const pythonQuizzes: { [key: number]: QuizQuestion[] } = {
       ],
       correctAnswer: 1,
       explanation: "continue omite el resto de la iteración actual, por lo que no imprime 1, solo 0 y 2."
+    },
+    {
+      id: 11,
+      question: "¿Cuál es el resultado de list(map(lambda x: x**2, [1, 2, 3, 4]))?",
+      options: [
+        "[1, 4, 9, 16]",
+        "[2, 4, 6, 8]",
+        "[1, 2, 3, 4]",
+        "Error"
+      ],
+      correctAnswer: 0,
+      explanation: "map() aplica la función lambda x: x**2 a cada elemento, resultando en [1, 4, 9, 16]."
+    },
+    {
+      id: 12,
+      question: "¿Qué hace el operador ** en Python?",
+      options: [
+        "Multiplicación",
+        "Potenciación",
+        "División",
+        "Comentario"
+      ],
+      correctAnswer: 1,
+      explanation: "El operador ** se usa para potenciación en Python. Por ejemplo, 2**3 = 8."
+    },
+    {
+      id: 13,
+      question: "¿Cuál es la forma correcta de abrir un archivo en Python?",
+      options: [
+        "file = open('archivo.txt', 'r')",
+        "with open('archivo.txt', 'r') as file:",
+        "Ambas son correctas",
+        "file = read('archivo.txt')"
+      ],
+      correctAnswer: 2,
+      explanation: "Ambas formas son válidas, pero 'with' es la práctica recomendada porque maneja automáticamente el cierre del archivo."
+    },
+    {
+      id: 14,
+      question: "¿Qué tipo de dato devuelve range(5) en Python 3?",
+      options: [
+        "list",
+        "tuple",
+        "range object",
+        "string"
+      ],
+      correctAnswer: 2,
+      explanation: "range() devuelve un objeto range, no una lista. Se debe convertir con list() si se necesita una lista."
+    },
+    {
+      id: 15,
+      question: "¿Cuál es el resultado de este código?\n\ndef decorador(func):\n    def wrapper():\n        print('Antes')\n        func()\n        print('Después')\n    return wrapper\n\n@decorador\ndef saludo():\n    print('Hola')\n\nsaludo()",
+      options: [
+        "Hola",
+        "Antes\nHola\nDespués",
+        "Error",
+        "Después\nHola\nAntes"
+      ],
+      correctAnswer: 1,
+      explanation: "El decorador envuelve la función original, ejecutando código antes y después. Resultado: Antes, Hola, Después."
+    },
+    {
+      id: 16,
+      question: "¿Cuál es la principal ventaja de usar generadores en Python?",
+      options: [
+        "Son más rápidos",
+        "Usan menos memoria",
+        "Son más legibles",
+        "Evitan errores"
+      ],
+      correctAnswer: 1,
+      explanation: "Los generadores son eficientes en memoria porque producen valores bajo demanda usando yield, no almacenan toda la secuencia."
+    },
+    {
+      id: 17,
+      question: "¿Qué es 'self' en una clase de Python?",
+      options: [
+        "Una palabra clave reservada",
+        "El nombre de la clase",
+        "Una referencia a la instancia actual",
+        "Un método especial"
+      ],
+      correctAnswer: 2,
+      explanation: "self es una referencia a la instancia actual del objeto, permitiendo acceso a sus atributos y métodos."
+    },
+    {
+      id: 18,
+      question: "¿Cuál es el resultado de este código?\n\nclass Padre:\n    def metodo(self):\n        return 'Padre'\n\nclass Hijo(Padre):\n    def metodo(self):\n        return 'Hijo'\n\nobj = Hijo()\nprint(obj.metodo())",
+      options: [
+        "Padre",
+        "Hijo",
+        "Error",
+        "None"
+      ],
+      correctAnswer: 1,
+      explanation: "El método en la clase Hijo sobrescribe el método del Padre, por lo que imprime 'Hijo'."
+    },
+    {
+      id: 19,
+      question: "¿Qué hace el método join() en Python?",
+      options: [
+        "Une dos listas",
+        "Conecta a una base de datos",
+        "Une elementos de una secuencia en una cadena",
+        "Combina diccionarios"
+      ],
+      correctAnswer: 2,
+      explanation: "join() une los elementos de una secuencia (como una lista) en una cadena usando un separador."
+    },
+    {
+      id: 20,
+      question: "¿Cuál es el resultado de este código?\n\ntry:\n    resultado = 10 / 0\nexcept ZeroDivisionError:\n    print('Error')\nelse:\n    print('Éxito')\nfinally:\n    print('Fin')",
+      options: [
+        "Error\nFin",
+        "Éxito\nFin",
+        "Error\nÉxito\nFin",
+        "Solo Fin"
+      ],
+      correctAnswer: 0,
+      explanation: "Se ejecuta except (Error) porque hay división por cero, luego finally (Fin). El else no se ejecuta cuando hay excepción."
     }
   ]
 };

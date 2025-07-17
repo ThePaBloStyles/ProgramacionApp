@@ -34,13 +34,15 @@ interface Lesson {
   id: number;
   title: string;
   description: string;
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  difficulty: 'beginner' | 'intermediate' | 'advanced' | 'final';
   duration: number;
   completed: boolean;
   content: string;
   codeExample: string;
   exercise: string;
   expectedOutput: string;
+  isLocked?: boolean;
+  unlockRequirement?: string;
 }
 
 interface LessonDetailParams {
@@ -1887,6 +1889,7 @@ print(f"Datos restaurados: {datos_restaurados}")`,
       case 'beginner': return 'success';
       case 'intermediate': return 'warning';
       case 'advanced': return 'danger';
+      case 'final': return 'dark';
       default: return 'medium';
     }
   };
@@ -1896,6 +1899,7 @@ print(f"Datos restaurados: {datos_restaurados}")`,
       case 'beginner': return 'Principiante';
       case 'intermediate': return 'Intermedio';
       case 'advanced': return 'Avanzado';
+      case 'final': return 'Examen Final';
       default: return 'Desconocido';
     }
   };
