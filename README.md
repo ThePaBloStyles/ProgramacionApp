@@ -36,8 +36,8 @@ Una plataforma interactiva de aprendizaje de programación construida con **Reac
 
 1. **Clonar el repositorio**
 ```bash
-git clone https://github.com/TU_USUARIO/learn-programming-app.git
-cd learn-programming-app
+git clone https://github.com/ThePaBloStyles/ProgramacionApp.git
+cd ProgramacionApp
 ```
 
 2. **Instalar dependencias**
@@ -168,7 +168,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 👨‍💻 Autor
 
-**Tu Nombre** - [Tu GitHub](https://github.com/TU_USUARIO)
+**ThePaBloStyles** - [GitHub](https://github.com/ThePaBloStyles)
 
 ## 🙏 Agradecimientos
 
