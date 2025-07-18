@@ -47,53 +47,7 @@ interface CodeExample {
 }
 
 const CodePlayground: React.FC = () => {
-  const [code, setCode] = useState(`# ¡Bienvenido al Playground de Python Avanzado! 🐍
-# Este playground ahora soporta funciones, bucles, condicionales y más!
-
-import random
-import math
-
-# Ejemplo 1: Función con bucles y condicionales
-def es_primo(n):
-    if n < 2:
-        return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-    return True
-
-# Ejemplo 2: Trabajar con listas
-numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-primos = []
-
-for num in numeros:
-    if es_primo(num):
-        primos.append(num)
-
-print("Números del 1 al 10:")
-print(numeros)
-print("Números primos encontrados:")
-print(primos)
-
-# Ejemplo 3: Juego simple
-numero_secreto = random.randint(1, 10)
-print(f"\\nJuego: ¿Adivina el número del 1 al 10?")
-print(f"(El número secreto es: {numero_secreto})")
-
-# Simulamos algunos intentos
-intentos = [5, 8, numero_secreto]
-for i, intento in enumerate(intentos):
-    print(f"Intento {i+1}: {intento}")
-    if intento == numero_secreto:
-        print("¡Correcto! 🎉")
-        break
-    elif intento < numero_secreto:
-        print("Muy bajo")
-    else:
-        print("Muy alto")
-
-# ¡Prueba tu propio código aquí!
-`);
+  const [code, setCode] = useState('');  // Playground vacío para que sea obligatorio escribir código
 
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
@@ -1067,7 +1021,13 @@ for i in range(3):
                       value={code}
                       onIonInput={(e) => setCode(e.detail.value!)}
                       className="code-editor"
-                      placeholder="Escribe tu código Python aquí..."
+                      placeholder="¡Escribe tu código Python aquí para empezar a programar! 🐍
+                      
+Ejemplo básico:
+print('¡Hola, mundo!')
+
+# Puedes usar variables, funciones, bucles y más...
+# ¡Usa los ejemplos como guía o crea algo completamente nuevo!"
                       rows={20}
                     />
                     <div className="editor-actions">
