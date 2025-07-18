@@ -35,6 +35,7 @@ import {
   code,
   terminal
 } from 'ionicons/icons';
+import ThemeToggle from '../components/ThemeToggle';
 import './CodePlayground.css';
 
 interface CodeExample {
@@ -999,6 +1000,8 @@ for i in range(3):
                       <IonButton fill="clear" color="danger" onClick={clearCode}>
                         <IonIcon icon={trash} />
                       </IonButton>
+                      
+                      <ThemeToggle />
                     </div>
                   </IonCol>
                 </IonRow>

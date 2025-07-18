@@ -1,0 +1,68 @@
+/* 
+ * Estilos para el Theme Toggle
+ * -------------------------------------------
+ */
+
+.theme-toggle {
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--ion-color-step-100);
+  transform: scale(1.1);
+}
+
+.theme-toggle ion-icon {
+  font-size: 20px;
+  color: var(--ion-color-primary);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle ion-icon:hover {
+  color: var(--ion-color-secondary);
+}
+
+/* Animación suave para el cambio de icono */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.theme-toggle:active ion-icon {
+  animation: rotate 0.5s ease;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .theme-toggle ion-icon {
+    font-size: 18px;
+  }
+}
+
+/* Estados de enfoque para accesibilidad */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ion-color-primary);
+  outline-offset: 2px;
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+  .theme-toggle {
+    border: 2px solid var(--ion-color-primary);
+  }
+}

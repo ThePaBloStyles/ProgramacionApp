@@ -19,6 +19,7 @@ import JavaHero from './pages/JavaHero';
 import AIChat from './pages/AIChat';
 import CodePlayground from './pages/CodePlayground';
 import LessonDetail from './pages/LessonDetail';
+import { useEffect } from 'react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,67 +50,82 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/global.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/python">
-            <PythonLearning />
-          </Route>
-          <Route exact path="/python-hero">
-            <PythonHero />
-          </Route>
-          <Route exact path="/java">
-            <JavaLearning />
-          </Route>
-          <Route exact path="/java-hero">
-            <JavaHero />
-          </Route>
-          <Route exact path="/ai-chat">
-            <AIChat />
-          </Route>
-          <Route path="/playground">
-            <CodePlayground />
-          </Route>
-          <Route exact path="/lesson/:language/:lessonId">
-            <LessonDetail />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={homeOutline} />
-            <IonLabel>Inicio</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="python" href="/python">
-            <IonIcon aria-hidden="true" icon={codeSlashOutline} />
-            <IonLabel>Python</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="java" href="/java">
-            <IonIcon aria-hidden="true" icon={cafeOutline} />
-            <IonLabel>Java</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="ai-chat" href="/ai-chat">
-            <IonIcon aria-hidden="true" icon={chatbubbleEllipsesOutline} />
-            <IonLabel>AI Chat</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="playground" href="/playground">
-            <IonIcon aria-hidden="true" icon={libraryOutline} />
-            <IonLabel>Playground</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  useEffect(() => {
+    // Inicializar el tema basado en la preferencia del usuario o del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      document.body.classList.toggle('dark', savedTheme === 'dark');
+    } else {
+      document.body.classList.toggle('dark', prefersDark);
+    }
+  }, []);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/python">
+              <PythonLearning />
+            </Route>
+            <Route exact path="/python-hero">
+              <PythonHero />
+            </Route>
+            <Route exact path="/java">
+              <JavaLearning />
+            </Route>
+            <Route exact path="/java-hero">
+              <JavaHero />
+            </Route>
+            <Route exact path="/ai-chat">
+              <AIChat />
+            </Route>
+            <Route path="/playground">
+              <CodePlayground />
+            </Route>
+            <Route exact path="/lesson/:language/:lessonId">
+              <LessonDetail />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          </IonRouterOutlet>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="home" href="/home">
+              <IonIcon aria-hidden="true" icon={homeOutline} />
+              <IonLabel>Inicio</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="python" href="/python">
+              <IonIcon aria-hidden="true" icon={codeSlashOutline} />
+              <IonLabel>Python</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="java" href="/java">
+              <IonIcon aria-hidden="true" icon={cafeOutline} />
+              <IonLabel>Java</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="ai-chat" href="/ai-chat">
+              <IonIcon aria-hidden="true" icon={chatbubbleEllipsesOutline} />
+              <IonLabel>AI Chat</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="playground" href="/playground">
+              <IonIcon aria-hidden="true" icon={libraryOutline} />
+              <IonLabel>Playground</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;

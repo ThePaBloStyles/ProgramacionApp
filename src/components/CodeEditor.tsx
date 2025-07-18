@@ -27,6 +27,7 @@ import {
   stopwatch,
   refresh
 } from 'ionicons/icons';
+import ThemeToggle from './ThemeToggle';
 import './CodeEditor.css';
 
 interface TestCase {
@@ -318,10 +319,13 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
       {/* Editor de Código */}
       <IonCard className="code-editor-card">
         <IonCardHeader>
-          <IonCardTitle className="editor-title">
-            <IonIcon icon={codeSlash} />
-            Editor de Código - {language.toUpperCase()}
-          </IonCardTitle>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <IonCardTitle className="editor-title">
+              <IonIcon icon={codeSlash} />
+              Editor de Código - {language.toUpperCase()}
+            </IonCardTitle>
+            <ThemeToggle />
+          </div>
         </IonCardHeader>
         <IonCardContent>
           <IonTextarea

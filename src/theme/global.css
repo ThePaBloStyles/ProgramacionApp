@@ -1,0 +1,272 @@
+/* 
+ * Estilos globales para el tema adaptable
+ * -------------------------------------------
+ */
+
+/* Variables adicionales para componentes específicos */
+:root {
+  /* Colores de estado para mejor UX */
+  --lesson-progress-completed: #4CAF50;
+  --lesson-progress-in-progress: #FF9800;
+  --lesson-progress-locked: #9E9E9E;
+  
+  /* Colores específicos para diferentes niveles */
+  --difficulty-beginner: #4CAF50;
+  --difficulty-intermediate: #FF9800;
+  --difficulty-advanced: #F44336;
+  --difficulty-final: #9C27B0;
+  
+  /* Espaciado consistente */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+body.dark {
+  /* Colores de estado para modo oscuro */
+  --lesson-progress-completed: #66BB6A;
+  --lesson-progress-in-progress: #FFB74D;
+  --lesson-progress-locked: #BDBDBD;
+  
+  /* Colores específicos para diferentes niveles en modo oscuro */
+  --difficulty-beginner: #66BB6A;
+  --difficulty-intermediate: #FFB74D;
+  --difficulty-advanced: #EF5350;
+  --difficulty-final: #BA68C8;
+}
+
+/* Transiciones suaves para el cambio de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estilos para el tab bar */
+ion-tab-bar {
+  background: var(--ion-tab-bar-background);
+  border-top: 1px solid var(--ion-border-color);
+}
+
+ion-tab-button {
+  color: var(--ion-color-medium);
+}
+
+ion-tab-button.tab-selected {
+  color: var(--ion-color-primary);
+}
+
+/* Estilos para cards */
+ion-card {
+  background: var(--ion-card-background);
+  border: 1px solid var(--ion-border-color);
+  box-shadow: var(--card-shadow);
+}
+
+/* Estilos para items */
+ion-item {
+  background: var(--ion-item-background);
+  border-bottom: 1px solid var(--ion-border-color);
+}
+
+/* Estilos para headers */
+ion-header {
+  background: var(--ion-toolbar-background);
+  border-bottom: 1px solid var(--ion-border-color);
+}
+
+ion-toolbar {
+  background: var(--ion-toolbar-background);
+  color: var(--ion-text-color);
+}
+
+/* Estilos para títulos */
+ion-title {
+  color: var(--ion-text-color);
+}
+
+/* Estilos para badges específicos de dificultad */
+.difficulty-badge {
+  transition: all 0.3s ease;
+}
+
+.difficulty-badge.beginner {
+  background: var(--difficulty-beginner);
+  color: white;
+}
+
+.difficulty-badge.intermediate {
+  background: var(--difficulty-intermediate);
+  color: white;
+}
+
+.difficulty-badge.advanced {
+  background: var(--difficulty-advanced);
+  color: white;
+}
+
+.difficulty-badge.final {
+  background: var(--difficulty-final);
+  color: white;
+}
+
+/* Estilos para indicadores de progreso */
+.progress-indicator {
+  transition: all 0.3s ease;
+}
+
+.progress-indicator.completed {
+  background: var(--lesson-progress-completed);
+  color: white;
+}
+
+.progress-indicator.in-progress {
+  background: var(--lesson-progress-in-progress);
+  color: white;
+}
+
+.progress-indicator.locked {
+  background: var(--lesson-progress-locked);
+  color: white;
+}
+
+/* Animaciones mejoradas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Aplicar animaciones a diferentes elementos */
+.page-enter {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.card-enter {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+.button-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Estilos para mejor legibilidad en modo oscuro */
+body.dark {
+  --ion-color-step-50: #1e1e1e;
+  --ion-color-step-100: #2a2a2a;
+  --ion-color-step-150: #363636;
+  --ion-color-step-200: #414141;
+  --ion-color-step-250: #4d4d4d;
+  --ion-color-step-300: #595959;
+  --ion-color-step-350: #656565;
+  --ion-color-step-400: #717171;
+  --ion-color-step-450: #7d7d7d;
+  --ion-color-step-500: #898989;
+  --ion-color-step-550: #949494;
+  --ion-color-step-600: #a0a0a0;
+  --ion-color-step-650: #acacac;
+  --ion-color-step-700: #b8b8b8;
+  --ion-color-step-750: #c4c4c4;
+  --ion-color-step-800: #d0d0d0;
+  --ion-color-step-850: #dbdbdb;
+  --ion-color-step-900: #e7e7e7;
+  --ion-color-step-950: #f3f3f3;
+}
+
+/* Mejoras para accesibilidad */
+@media (prefers-contrast: high) {
+  :root {
+    --ion-border-color: #000000;
+    --code-border: #000000;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+  
+  body.dark {
+    --ion-border-color: #ffffff;
+    --code-border: #ffffff;
+    --card-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  :root {
+    --text-size-large: 1.3rem;
+    --text-size-medium: 1.1rem;
+    --text-size-small: 0.9rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --text-size-large: 1.4rem;
+    --text-size-medium: 1.15rem;
+    --text-size-small: 0.95rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --text-size-large: 1.5rem;
+    --text-size-medium: 1.2rem;
+    --text-size-small: 1rem;
+  }
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+  ion-card {
+    margin: var(--spacing-sm);
+  }
+  
+  ion-button {
+    min-height: 44px; /* Mejor accesibilidad táctil */
+  }
+  
+  .toolbar-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+/* Estilos para impresión */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  ion-tab-bar,
+  .theme-toggle,
+  .toolbar-buttons {
+    display: none !important;
+  }
+}
