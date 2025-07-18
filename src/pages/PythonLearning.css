@@ -1,478 +1,464 @@
-.python-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Global container styles */
+.python-learning-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
-.python-main-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.welcome-card {
+/* Hero section - unchanged as requested */
+.hero-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  margin-bottom: 20px;
+  padding: 2rem 1rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.welcome-content {
-  padding: 30px 20px;
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+  animation: float 20s infinite linear;
 }
 
-.python-logo {
-  margin-bottom: 20px;
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.python-logo ion-icon {
-  font-size: 80px;
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.welcome-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.welcome-content p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  opacity: 0.9;
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
   line-height: 1.6;
 }
 
 .progress-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto 0;
+  max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Progress card content */
 .progress-header {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .progress-header ion-icon {
-  color: #3880ff;
-  font-size: 24px;
-  margin-right: 10px;
+  color: #667eea;
+  font-size: 2rem;
+  margin-right: 0.75rem;
 }
 
 .progress-header h3 {
   margin: 0;
-  color: #000000;
-  font-size: 1.2rem;
+  color: #2d3748;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
 .progress-content {
   padding: 0;
+  text-align: center;
 }
 
 .progress-content p {
-  color: #000000;
-  margin: 8px 0;
-  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0.5rem 0;
+  font-size: 1rem;
   font-weight: 500;
 }
 
 .progress-content ion-progress-bar {
-  margin: 10px 0;
-  height: 8px;
-  border-radius: 4px;
+  margin: 1rem 0;
+  height: 10px;
+  border-radius: 5px;
+  --progress-background: #667eea;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+/* Main content sections */
+.section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.feature-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.feature-item ion-icon {
-  font-size: 2rem;
-}
-
-.feature-item ion-label {
-  font-size: 0.9rem;
+.section-header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
-.training-button {
-  --background: rgba(255, 255, 255, 0.2);
-  --background-hover: rgba(255, 255, 255, 0.3);
-  --color: white;
+.section-header h2 {
+  color: #2d3748;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Difficulty segment */
+ion-segment {
+  --background: #ffffff;
+  --color: #4a5568;
+  --color-checked: #ffffff;
+  --background-checked: #667eea;
+  --indicator-color: #667eea;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 0.25rem;
+}
+
+ion-segment-button {
   --border-radius: 12px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-top: 20px;
-}
-
-.info-card {
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.level-info {
-  text-align: center;
-  padding: 20px;
-}
-
-.level-badge {
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-.level-info p {
-  margin: 10px 0 0 0;
-  color: #000000;
-  line-height: 1.5;
-  font-weight: 500;
-}
-
-.progress-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  margin-bottom: 20px;
-}
-
-.progress-card h3 {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.progress-bar {
-  height: 8px;
-  border-radius: 4px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-}
-
-.stats-grid {
-  margin-top: 20px;
-  padding: 0;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.stat-item ion-badge {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.stat-item ion-label {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.difficulty-description {
-  margin-top: 15px;
-  padding: 15px;
-  background: rgba(var(--ion-color-light-rgb), 0.1);
-  border-radius: 8px;
-  border-left: 4px solid var(--ion-color-primary);
-}
-
-.difficulty-description p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.lesson-meta {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.lesson-content {
-  padding: 20px;
-}
-
-.code-block {
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  overflow-x: auto;
-  border-left: 4px solid #3776ab;
-}
-
-.code-editor {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 15px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  margin-bottom: 15px;
-  min-height: 200px;
-}
-
-.code-suggestions {
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-
-.code-suggestions h4 {
-  color: #000000;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  --padding: 0.75rem 1.5rem;
   font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
-.suggestion-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 8px 12px;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+/* Clean up and remove obsolete styles */
+
+/* Toast styling */
+ion-toast {
+  --background: #2d3748;
+  --color: #ffffff;
+  --border-radius: 12px;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.suggestion-item:hover {
-  background-color: #f8f9fa;
-  border-color: #3880ff;
+ion-toast.toast-success {
+  --background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
 }
 
-.suggestion-item ion-icon {
-  color: #ffc409;
-  margin-right: 8px;
-  font-size: 18px;
+ion-toast.toast-warning {
+  --background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
 }
 
-.suggestion-item span {
-  color: #000000;
-  font-size: 0.9rem;
-  line-height: 1.4;
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+  100% { transform: translateY(0px) rotate(360deg); }
 }
 
-.expected-output {
-  background: #e8f5e8;
-  padding: 15px;
-  border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  border-left: 4px solid #28a745;
-  margin: 0;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .code-block {
-    background: #2d3748;
-    color: #e2e8f0;
-    border-left-color: #63b3ed;
-  }
-  
-  .code-editor {
-    background: #2d3748;
-    color: #e2e8f0;
-    border-color: #4a5568;
-  }
-  
-  .expected-output {
-    background: #1a202c;
-    color: #e2e8f0;
-    border-left-color: #68d391;
-  }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .python-container {
-    padding: 15px;
+  .hero-content h1 {
+    font-size: 2.5rem;
   }
   
-  .lesson-content {
-    padding: 15px;
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .lessons-card ion-card-title {
+    font-size: 1.3rem;
+  }
+  
+  .lesson-card ion-card-content {
+    padding: 1rem;
+  }
+  
+  .lesson-info h3 {
+    font-size: 1.1rem;
+  }
+  
+  .lesson-meta {
+    gap: 0.5rem;
   }
 }
 
-/* Animation for lesson items */
-ion-item {
-  transition: transform 0.2s ease;
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .progress-card {
+    margin: 1rem 0.5rem 0;
+  }
+  
+  ion-segment {
+    font-size: 0.85rem;
+  }
+  
+  .lesson-card {
+    margin-bottom: 1rem;
+  }
+  
+  .lesson-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .lesson-meta ion-chip {
+    font-size: 0.7rem;
+  }
 }
 
-ion-item:hover {
-  transform: translateX(5px);
-}
-
-/* Custom styling for modal */
-.lesson-modal {
-  --height: 90%;
-  --border-radius: 15px;
-}
-
-/* Code syntax highlighting simulation */
-.code-block code {
-  color: #000000;
-}
-
-.code-block .comment {
-  color: #000000;
-  font-style: italic;
-}
-
-.code-block .keyword {
-  color: #d73a49;
-  font-weight: bold;
-}
-
-.code-block .string {
-  color: #032f62;
-}
-
-/* Estilos para retos y logros */
-.achievements-card {
-  margin-top: 20px;
-}
-
-.challenges-section, .achievements-section {
-  margin-bottom: 30px;
-}
-
-.challenges-section h4, .achievements-section h4 {
-  color: #495057;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.challenge-item {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-}
-
-.challenge-item:hover {
-  border-color: #3880ff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.challenge-item.completed {
-  border-color: #28a745;
-  background: #f8fff9;
-}
-
-.challenge-icon {
-  margin-right: 15px;
-}
-
-.challenge-icon ion-icon {
-  font-size: 32px;
-}
-
-.challenge-info {
-  flex: 1;
-}
-
-.challenge-info h5 {
-  margin: 0 0 5px 0;
-  color: #495057;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.challenge-info p {
-  margin: 0 0 10px 0;
-  color: #6c757d;
-  font-size: 0.9rem;
-}
-
-.achievement-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 10px;
+/* Utility classes */
+.text-center {
   text-align: center;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-soft {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-medium {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-strong {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.border-gradient {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #667eea 0%, #764ba2 100%) border-box;
+}
+
+/* Accessibility improvements */
+.lesson-card:focus-within {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.lesson-actions ion-button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .python-learning-container {
+    background: white;
+  }
+  
+  .hero-section {
+    background: #667eea;
+    color: white;
+  }
+  
+  .lesson-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+  }
+}
+
+/* Lessons card */
+.lessons-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.achievement-item.unlocked {
-  border-color: #ffc409;
-  background: #fffdf5;
+.lessons-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-.achievement-item.locked {
-  opacity: 0.5;
+.lessons-card ion-card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
 }
 
-.achievement-icon {
-  margin-bottom: 10px;
-}
-
-.achievement-icon ion-icon {
-  font-size: 28px;
-}
-
-.achievement-info h6 {
-  margin: 0 0 5px 0;
-  color: #495057;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.achievement-info p {
+.lessons-card ion-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
-  color: #000000;
-  font-size: 0.8rem;
-  line-height: 1.3;
 }
 
-/* Estilos para tarjetas de lecciones */
+.lessons-card ion-card-title ion-icon {
+  font-size: 1.75rem;
+}
+
+/* Individual lesson cards */
 .lesson-card {
-  background: #ffffff;
-  color: #000000;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.lesson-card h3,
-.lesson-card h4,
-.lesson-card p,
-.lesson-card span,
-.lesson-card div {
-  color: #000000 !important;
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
 }
 
-.lesson-card ion-card-title {
-  color: #000000 !important;
+.lesson-card.completed {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%);
+  border-color: #28a745;
+}
+
+.lesson-card.completed:hover {
+  border-color: #1e7e34;
 }
 
 .lesson-card ion-card-content {
-  color: #000000 !important;
+  padding: 1.5rem;
 }
 
-.lesson-card ion-card-content p {
-  color: #000000 !important;
+.lesson-header {
+  margin-bottom: 1.5rem;
+}
+
+.lesson-info h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.lesson-info p {
+  color: #718096;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.lesson-meta ion-chip {
+  --background: #e2e8f0;
+  --color: #4a5568;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.lesson-meta ion-chip[color="success"] {
+  --background: #c6f6d5;
+  --color: #22543d;
+}
+
+.lesson-meta ion-chip[color="warning"] {
+  --background: #fefcbf;
+  --color: #744210;
+}
+
+.lesson-meta ion-chip[color="danger"] {
+  --background: #fed7d7;
+  --color: #742a2a;
+}
+
+.lesson-meta ion-chip[color="dark"] {
+  --background: #2d3748;
+  --color: #ffffff;
+}
+
+.lesson-meta ion-chip[color="medium"] {
+  --background: #e2e8f0;
+  --color: #4a5568;
+}
+
+.lesson-actions {
+  margin-top: 1.5rem;
+}
+
+.lesson-actions ion-button {
+  --border-radius: 12px;
+  --padding-top: 0.75rem;
+  --padding-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.lesson-actions ion-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-actions ion-button[color="primary"] {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.lesson-actions ion-button[color="success"] {
+  --background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.lesson-actions ion-button[color="medium"] {
+  --background: #a0aec0;
+}
+
+.lesson-actions ion-button[disabled] {
+  --background: #e2e8f0;
+  --color: #a0aec0;
 }
