@@ -814,6 +814,160 @@ public class ColeccionesDemo {
 }`,
       exercise: `Crea un programa que use diferentes colecciones.`,
       expectedOutput: "Colecciones funcionando correctamente"
+    },
+    {
+      id: 16,
+      title: "Programación Funcional y Streams",
+      description: "Streams, lambdas y programación funcional en Java",
+      difficulty: 'advanced',
+      duration: 45,
+      completed: false,
+      content: `Java 8 introdujo características de programación funcional como streams y lambdas.
+
+Conceptos clave:
+• Expresiones lambda
+• Streams API
+• Programación funcional
+• Operaciones map, filter, reduce
+• Interfaces funcionales
+• Referencias de métodos`,
+      codeExample: `import java.util.*;
+import java.util.stream.*;
+
+public class ProgramacionFuncional {
+    public static void main(String[] args) {
+        List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        
+        // Operaciones con streams
+        List<Integer> pares = numeros.stream()
+            .filter(n -> n % 2 == 0)
+            .collect(Collectors.toList());
+        System.out.println("Números pares: " + pares);
+        
+        // Map operation
+        List<Integer> cuadrados = numeros.stream()
+            .map(n -> n * n)
+            .collect(Collectors.toList());
+        System.out.println("Cuadrados: " + cuadrados);
+        
+        // Reduce operation
+        int suma = numeros.stream()
+            .reduce(0, (a, b) -> a + b);
+        System.out.println("Suma: " + suma);
+        
+        // Trabajar con objetos
+        List<String> nombres = Arrays.asList("Ana", "Carlos", "María", "David");
+        
+        String nombresConcatenados = nombres.stream()
+            .filter(nombre -> nombre.length() > 3)
+            .map(String::toUpperCase)
+            .collect(Collectors.joining(", "));
+        System.out.println("Nombres filtrados: " + nombresConcatenados);
+        
+        // Estadísticas
+        OptionalDouble promedio = numeros.stream()
+            .mapToInt(Integer::intValue)
+            .average();
+        System.out.println("Promedio: " + promedio.orElse(0.0));
+    }
+}`,
+      exercise: `Implementa soluciones usando programación funcional y streams.`,
+      expectedOutput: "Programación funcional aplicada correctamente"
+    },
+    {
+      id: 17,
+      title: "Examen Final Java",
+      description: "Evaluación completa de todos los conceptos aprendidos",
+      difficulty: 'final',
+      duration: 90,
+      completed: false,
+      isLocked: true,
+      unlockRequirement: "Completa todas las lecciones anteriores (1-16)",
+      content: `¡Felicitaciones! Has llegado al examen final de Java.
+      
+Este examen evalúa TODOS los conceptos que has aprendido:
+• Sintaxis básica y variables
+• Estructuras de control y bucles
+• Programación orientada a objetos
+• Manejo de excepciones
+• Colecciones y arrays
+• Programación funcional con streams
+• Conceptos avanzados de Java
+
+El examen incluye:
+• 20 preguntas de opción múltiple
+• 5 ejercicios prácticos de programación
+• 1 proyecto final integrador
+
+¡Demuestra todo lo que has aprendido!`,
+      codeExample: `// Proyecto Final: Sistema de Gestión de Biblioteca
+import java.util.*;
+import java.util.stream.*;
+
+public class SistemaGestionBiblioteca {
+    private List<Libro> libros;
+    private List<Usuario> usuarios;
+    
+    public SistemaGestionBiblioteca() {
+        this.libros = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+    }
+    
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+        System.out.println("Libro agregado: " + libro.getTitulo());
+    }
+    
+    public boolean prestarLibro(String isbn, String nombreUsuario) {
+        Optional<Libro> libroOpt = libros.stream()
+            .filter(libro -> libro.getIsbn().equals(isbn) && libro.isDisponible())
+            .findFirst();
+            
+        if (libroOpt.isPresent()) {
+            Libro libro = libroOpt.get();
+            libro.setDisponible(false);
+            System.out.println("Libro prestado: " + libro.getTitulo());
+            return true;
+        }
+        return false;
+    }
+    
+    public List<Libro> buscarLibrosPorAutor(String autor) {
+        return libros.stream()
+            .filter(libro -> libro.getAutor().toLowerCase().contains(autor.toLowerCase()))
+            .collect(Collectors.toList());
+    }
+    
+    public void generarReporte() {
+        long librosDisponibles = libros.stream()
+            .filter(Libro::isDisponible)
+            .count();
+        
+        System.out.println("Reporte de la biblioteca:");
+        System.out.println("Total de libros: " + libros.size());
+        System.out.println("Libros disponibles: " + librosDisponibles);
+        System.out.println("Libros prestados: " + (libros.size() - librosDisponibles));
+    }
+}
+
+class Libro {
+    private String titulo;
+    private String autor;
+    private String isbn;
+    private boolean disponible;
+    
+    // Constructor, getters y setters
+}
+
+class Usuario {
+    private String nombre;
+    private String email;
+    private List<Libro> librosPrestados;
+    
+    // Constructor, getters y setters
+}`,
+      exercise: `Completa el sistema de gestión de biblioteca con todas las funcionalidades requeridas.`,
+      expectedOutput: "Sistema de biblioteca completo y funcional"
     }
   ];
 
@@ -1809,6 +1963,160 @@ datos_restaurados = json.loads(json_string)
 print(f"Datos restaurados: {datos_restaurados}")`,
       exercise: `Crea un programa que use diferentes módulos de Python.`,
       expectedOutput: "Módulos funcionando correctamente"
+    },
+    {
+      id: 16,
+      title: "Programación Funcional Avanzada",
+      description: "map, filter, reduce, lambda y comprehensions avanzadas",
+      difficulty: 'advanced',
+      duration: 48,
+      completed: false,
+      content: `La programación funcional enfatiza funciones puras y transformaciones.
+      
+Conceptos clave:
+• lambda: funciones anónimas
+• map(): aplicar función a secuencia
+• filter(): filtrar elementos
+• reduce(): reducir secuencia a un valor
+• Comprehensions avanzadas
+• Funciones de orden superior`,
+      codeExample: `from functools import reduce
+
+# Funciones lambda
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# map: aplicar función a cada elemento
+cuadrados = list(map(lambda x: x**2, numeros))
+print(f"Cuadrados: {cuadrados}")
+
+# filter: filtrar elementos
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(f"Pares: {pares}")
+
+# reduce: reducir a un solo valor
+suma = reduce(lambda x, y: x + y, numeros)
+print(f"Suma: {suma}")
+
+# Comprehensions avanzadas
+# List comprehension con condición
+pares_cuadrados = [x**2 for x in numeros if x % 2 == 0]
+print(f"Cuadrados de pares: {pares_cuadrados}")
+
+# Dict comprehension
+cuadrados_dict = {x: x**2 for x in numeros if x <= 5}
+print(f"Dict cuadrados: {cuadrados_dict}")
+
+# Set comprehension
+vocales = {letra for letra in "programacion" if letra in "aeiou"}
+print(f"Vocales: {vocales}")
+
+# Función de orden superior
+def aplicar_operacion(lista, operacion):
+    return [operacion(x) for x in lista]
+
+def duplicar(x):
+    return x * 2
+
+def elevar_al_cubo(x):
+    return x ** 3
+
+print(f"Duplicados: {aplicar_operacion([1, 2, 3], duplicar)}")
+print(f"Cubos: {aplicar_operacion([1, 2, 3], elevar_al_cubo)}")`,
+      exercise: `Implementa soluciones usando programación funcional.`,
+      expectedOutput: "Programación funcional aplicada correctamente"
+    },
+    {
+      id: 17,
+      title: "Examen Final Python",
+      description: "Evaluación completa de todos los conceptos aprendidos",
+      difficulty: 'final',
+      duration: 90,
+      completed: false,
+      isLocked: true,
+      unlockRequirement: "Completa todas las lecciones anteriores (1-16)",
+      content: `¡Felicitaciones! Has llegado al examen final de Python.
+      
+Este examen evalúa TODOS los conceptos que has aprendido:
+• Conceptos básicos y sintaxis
+• Variables, tipos de datos y operadores
+• Estructuras de control y bucles
+• Funciones y módulos
+• Estructuras de datos (listas, diccionarios, etc.)
+• Programación orientada a objetos
+• Manejo de archivos y excepciones
+• Conceptos avanzados (decoradores, generadores)
+• Programación funcional
+
+El examen incluye:
+• 20 preguntas de opción múltiple
+• 5 ejercicios prácticos de programación
+• 1 proyecto final integrador
+
+¡Demuestra todo lo que has aprendido!`,
+      codeExample: `# Proyecto Final: Sistema de Gestión de Biblioteca
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.disponible = True
+    
+    def __str__(self):
+        estado = "Disponible" if self.disponible else "Prestado"
+        return f"{self.titulo} por {self.autor} - {estado}"
+
+class Biblioteca:
+    def __init__(self):
+        self.libros = []
+        self.usuarios = []
+    
+    def agregar_libro(self, libro):
+        self.libros.append(libro)
+        print(f"Libro agregado: {libro.titulo}")
+    
+    def prestar_libro(self, isbn, usuario):
+        for libro in self.libros:
+            if libro.isbn == isbn and libro.disponible:
+                libro.disponible = False
+                print(f"Libro prestado a {usuario}: {libro.titulo}")
+                return True
+        print("Libro no disponible")
+        return False
+    
+    def devolver_libro(self, isbn):
+        for libro in self.libros:
+            if libro.isbn == isbn and not libro.disponible:
+                libro.disponible = True
+                print(f"Libro devuelto: {libro.titulo}")
+                return True
+        print("Libro no encontrado o ya disponible")
+        return False
+    
+    def buscar_libros_por_autor(self, autor):
+        return [libro for libro in self.libros 
+                if autor.lower() in libro.autor.lower()]
+    
+    def generar_reporte(self):
+        total = len(self.libros)
+        disponibles = sum(1 for libro in self.libros if libro.disponible)
+        prestados = total - disponibles
+        
+        print(f"Reporte de la biblioteca:")
+        print(f"Total de libros: {total}")
+        print(f"Libros disponibles: {disponibles}")
+        print(f"Libros prestados: {prestados}")
+    
+    def listar_libros(self):
+        if not self.libros:
+            print("No hay libros en la biblioteca")
+        else:
+            for libro in self.libros:
+                print(libro)
+
+# Implementa el sistema completo con manejo de archivos,
+# excepciones y una interfaz de usuario por consola`,
+      exercise: `Completa el sistema de gestión de biblioteca con todas las funcionalidades requeridas.`,
+      expectedOutput: "Sistema de biblioteca completo y funcional"
     }
   ];
 
