@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IonContent,
   IonPage,
@@ -52,6 +52,19 @@ const JavaLearning: React.FC = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
+  const [completedLessonsData, setCompletedLessonsData] = useState<{ [key: string]: any }>({});
+
+  // Cargar progreso al iniciar
+  useEffect(() => {
+    const progressKey = 'lesson_progress_java';
+    const savedProgress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+    setCompletedLessonsData(savedProgress);
+  }, []);
+
+  // Función para verificar si una lección está completada
+  const isLessonCompleted = (lessonId: number) => {
+    return completedLessonsData[lessonId.toString()]?.completed || false;
+  };
 
   const lessons: Lesson[] = [
     // PRINCIPIANTE (6 lecciones)

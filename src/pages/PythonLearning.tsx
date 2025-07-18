@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   IonContent,
   IonPage,
@@ -58,6 +58,19 @@ const PythonLearning: React.FC = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
   const [completedChallenges, setCompletedChallenges] = useState<string[]>([]);
+  const [completedLessonsData, setCompletedLessonsData] = useState<{ [key: string]: any }>({});
+
+  // Cargar progreso al iniciar
+  useEffect(() => {
+    const progressKey = 'lesson_progress_python';
+    const savedProgress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+    setCompletedLessonsData(savedProgress);
+  }, []);
+
+  // Función para verificar si una lección está completada
+  const isLessonCompleted = (lessonId: number) => {
+    return completedLessonsData[lessonId.toString()]?.completed || false;
+  };
 
   const lessons: Lesson[] = [
     // PRINCIPIANTE (6 lecciones)
@@ -843,9 +856,9 @@ class Biblioteca:
   ];
 
   const filteredLessons = lessons.filter(lesson => lesson.difficulty === selectedDifficulty);
-  const completedLessons = lessons.filter(lesson => lesson.completed).length;
+  const completedLessonsCount = Object.keys(completedLessonsData).filter(key => completedLessonsData[key]?.completed).length;
   const totalLessons = lessons.length;
-  const progressPercentage = (completedLessons / totalLessons) * 100;
+  const progressPercentage = (completedLessonsCount / totalLessons) * 100;
 
   // Función para verificar si una lección está desbloqueada
   const isLessonUnlocked = (lesson: Lesson) => {
@@ -854,7 +867,7 @@ class Biblioteca:
     // El examen final requiere que todas las lecciones anteriores estén completadas
     if (lesson.id === 17) {
       const previousLessons = lessons.filter(l => l.id < 17);
-      return previousLessons.every(l => l.completed);
+      return previousLessons.every(l => isLessonCompleted(l.id));
     }
     
     return false;
@@ -872,31 +885,31 @@ class Biblioteca:
   const checkAchievements = () => {
     const newAchievements = [];
     
-    if (completedLessons === 1 && !unlockedAchievements.includes('first_lesson')) {
+    if (completedLessonsCount === 1 && !unlockedAchievements.includes('first_lesson')) {
       newAchievements.push('first_lesson');
     }
     
-    if (completedLessons === 6 && !unlockedAchievements.includes('python_basics')) {
+    if (completedLessonsCount === 6 && !unlockedAchievements.includes('python_basics')) {
       newAchievements.push('python_basics');
     }
     
-    if (completedLessons === 6 && !unlockedAchievements.includes('python_beginner')) {
+    if (completedLessonsCount === 6 && !unlockedAchievements.includes('python_beginner')) {
       newAchievements.push('python_beginner');
     }
     
-    if (completedLessons === 10 && !unlockedAchievements.includes('python_intermediate')) {
+    if (completedLessonsCount === 10 && !unlockedAchievements.includes('python_intermediate')) {
       newAchievements.push('python_intermediate');
     }
     
-    if (completedLessons === 16 && !unlockedAchievements.includes('python_advanced')) {
+    if (completedLessonsCount === 16 && !unlockedAchievements.includes('python_advanced')) {
       newAchievements.push('python_advanced');
     }
     
-    if (completedLessons === 16 && !unlockedAchievements.includes('python_expert')) {
+    if (completedLessonsCount === 16 && !unlockedAchievements.includes('python_expert')) {
       newAchievements.push('python_expert');
     }
     
-    if (completedLessons === 17 && !unlockedAchievements.includes('python_master')) {
+    if (completedLessonsCount === 17 && !unlockedAchievements.includes('python_master')) {
       newAchievements.push('python_master');
     }
     
@@ -948,7 +961,7 @@ class Biblioteca:
                   </div>
                   <div className="progress-content">
                     <IonText>
-                      <p>{completedLessons} de {totalLessons} lecciones completadas</p>
+                      <p>{completedLessonsCount} de {totalLessons} lecciones completadas</p>
                     </IonText>
                     <IonProgressBar value={progressPercentage / 100} color="primary" />
                     <IonText>
@@ -994,7 +1007,7 @@ class Biblioteca:
                   <IonRow>
                     {filteredLessons.map((lesson) => (
                       <IonCol size="12" sizeMd="6" key={lesson.id}>
-                        <IonCard className={`lesson-card ${lesson.completed ? 'completed' : ''}`}>
+                        <IonCard className={`lesson-card ${isLessonCompleted(lesson.id) ? 'completed' : ''}`}>
                           <IonCardContent>
                             <div className="lesson-header">
                               <div className="lesson-info">
@@ -1015,11 +1028,11 @@ class Biblioteca:
                               <IonButton
                                 expand="block"
                                 onClick={() => openLesson(lesson)}
-                                color={lesson.completed ? "success" : isLessonUnlocked(lesson) ? "primary" : "medium"}
+                                color={isLessonCompleted(lesson.id) ? "success" : isLessonUnlocked(lesson) ? "primary" : "medium"}
                                 disabled={!isLessonUnlocked(lesson)}
                               >
-                                <IonIcon icon={lesson.completed ? checkmarkCircle : isLessonUnlocked(lesson) ? playCircle : lockClosedOutline} slot="start" />
-                                {lesson.completed ? 'Revisar' : isLessonUnlocked(lesson) ? 'Comenzar' : 'Bloqueado'}
+                                <IonIcon icon={isLessonCompleted(lesson.id) ? checkmarkCircle : isLessonUnlocked(lesson) ? playCircle : lockClosedOutline} slot="start" />
+                                {isLessonCompleted(lesson.id) ? 'Revisar' : isLessonUnlocked(lesson) ? 'Comenzar' : 'Bloqueado'}
                               </IonButton>
                               {lesson.isLocked && !isLessonUnlocked(lesson) && (
                                 <IonText color="medium">

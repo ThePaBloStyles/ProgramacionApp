@@ -2152,13 +2152,32 @@ class Biblioteca:
     setShowQuiz(false);
     
     if (score >= 70) {
+      // Guardar progreso en localStorage
+      const progressKey = `lesson_progress_${language}`;
+      const existingProgress = JSON.parse(localStorage.getItem(progressKey) || '{}');
+      
+      // Marcar lección como completada
+      existingProgress[lessonId] = {
+        completed: true,
+        score: score,
+        completedAt: new Date().toISOString()
+      };
+      
+      localStorage.setItem(progressKey, JSON.stringify(existingProgress));
+      
       setToastMessage('¡Lección completada! Excelente trabajo.');
       setShowToast(true);
       
-      // Aquí podrías actualizar el estado global o localStorage
+      // Navegar de vuelta a la lista de lecciones
       setTimeout(() => {
-        history.push('/tabs/lessons');
-      }, 1500);
+        if (language === 'python') {
+          history.push('/python');
+        } else if (language === 'java') {
+          history.push('/java');
+        } else {
+          history.push('/home');
+        }
+      }, 2000);
     } else {
       setToastMessage('Necesitas obtener al menos 70% para completar la lección. ¡Revisa el material!');
       setShowToast(true);
