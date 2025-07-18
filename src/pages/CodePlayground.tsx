@@ -233,32 +233,95 @@ resultado = analizar_texto(texto_ejemplo)`,
   ];
 
   const runCode = () => {
+    if (!code.trim()) {
+      setToastMessage('Por favor, escribe código antes de ejecutar');
+      setShowToast(true);
+      return;
+    }
+
     setIsRunning(true);
     setOutput('');
     
-    // Simular ejecución de código
+    // Simular ejecución de código real
     setTimeout(() => {
-      const simulatedOutput = `Ejecutando código...
-
-10 + 5 = 15
-10 * 3 = 30
-
-Código ejecutado correctamente! ✅
-
-Tiempo de ejecución: 0.045 segundos
-Memoria utilizada: 12.3 MB
-
-¡Genial! Tu código se ejecutó sin errores.`;
-      
-      setOutput(simulatedOutput);
+      const result = simulateCodeExecution(code, selectedLanguage);
+      setOutput(result.output || 'El programa no produjo salida');
       setIsRunning(false);
-      setToastMessage('Código ejecutado correctamente!');
+      
+      if (result.errors.length === 0) {
+        setToastMessage('Código ejecutado correctamente!');
+      } else {
+        setToastMessage('Se encontraron errores en el código');
+      }
       setShowToast(true);
-    }, 2000);
+    }, 1000);
+  };
+
+  const simulateCodeExecution = (code: string, lang: string) => {
+    const errors: string[] = [];
+    let output = '';
+    
+    if (lang === 'python') {
+      // Extraer y ejecutar statements print
+      const lines = code.split('\n');
+      
+      for (const line of lines) {
+        const trimmedLine = line.trim();
+        
+        // Manejar print statements
+        if (trimmedLine.startsWith('print(') && trimmedLine.endsWith(')')) {
+          const content = trimmedLine.slice(6, -1); // Remover 'print(' y ')'
+          
+          if (content.startsWith('"') && content.endsWith('"')) {
+            // String literal
+            output += content.slice(1, -1) + '\n';
+          } else if (content.startsWith("'") && content.endsWith("'")) {
+            // String literal con comillas simples
+            output += content.slice(1, -1) + '\n';
+          } else {
+            // Expresión o variable simple
+            try {
+              // Evaluar expresiones matemáticas simples
+              if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(content)) {
+                const result = eval(content);
+                output += result + '\n';
+              } else {
+                output += content + '\n';
+              }
+            } catch {
+              output += content + '\n';
+            }
+          }
+        }
+      }
+      
+      // Validar sintaxis básica
+      if (code.includes('print(') && !code.includes(')')) {
+        errors.push('SyntaxError: invalid syntax - falta cerrar paréntesis');
+      }
+      
+    } else if (lang === 'java') {
+      // Validaciones básicas para Java
+      if (code.includes('System.out.println(')) {
+        const printMatches = code.match(/System\.out\.println\(([^)]+)\)/g);
+        if (printMatches) {
+          printMatches.forEach(match => {
+            const content = match.replace(/System\.out\.println\(|\)/g, '');
+            if (content.includes('"')) {
+              output += content.replace(/"/g, '') + '\n';
+            } else {
+              output += content + '\n';
+            }
+          });
+        }
+      }
+    }
+    
+    return { output: output.trim(), errors };
   };
 
   const clearCode = () => {
-    setCode('# Escribe tu código Python aquí...\n');
+    setCode('# Escribe tu código Python aquí...\nprint("¡Hola, mundo!")');
     setOutput('');
     setToastMessage('Código limpiado');
     setShowToast(true);

@@ -67,6 +67,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   }, [code, onCodeChange]);
 
   const executeCode = async () => {
+    if (!code.trim()) {
+      setToastMessage('Por favor, escribe código antes de ejecutar');
+      setShowToast(true);
+      return;
+    }
+
     setIsRunning(true);
     setOutput('');
     setErrors([]);
@@ -98,6 +104,12 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   };
 
   const runTests = async () => {
+    if (!code.trim()) {
+      setToastMessage('Por favor, escribe código antes de ejecutar los tests');
+      setShowToast(true);
+      return;
+    }
+
     setIsRunning(true);
     const results: boolean[] = [];
     
@@ -124,27 +136,50 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   };
 
   const simulateCodeExecution = (code: string, lang: string, input?: string) => {
+    // Verificar si el código está vacío
+    if (!code.trim()) {
+      return { output: '', errors: ['No hay código para ejecutar'] };
+    }
+
     // Simulación básica de ejecución de código
     const errors: string[] = [];
     let output = '';
     
     if (lang === 'python') {
-      // Validaciones básicas para Python
-      if (code.includes('print(')) {
-        const printMatches = code.match(/print\(([^)]+)\)/g);
-        if (printMatches) {
-          printMatches.forEach(match => {
-            const content = match.replace(/print\(|\)/g, '');
-            if (content.includes('"') || content.includes("'")) {
-              output += content.replace(/['"]/g, '') + '\n';
-            } else {
+      // Extraer y ejecutar statements print
+      const lines = code.split('\n');
+      
+      for (const line of lines) {
+        const trimmedLine = line.trim();
+        
+        // Manejar print statements
+        if (trimmedLine.startsWith('print(') && trimmedLine.endsWith(')')) {
+          const content = trimmedLine.slice(6, -1); // Remover 'print(' y ')'
+          
+          if (content.startsWith('"') && content.endsWith('"')) {
+            // String literal
+            output += content.slice(1, -1) + '\n';
+          } else if (content.startsWith("'") && content.endsWith("'")) {
+            // String literal con comillas simples
+            output += content.slice(1, -1) + '\n';
+          } else {
+            // Expresión o variable simple
+            try {
+              // Evaluar expresiones matemáticas simples
+              if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(content)) {
+                const result = eval(content);
+                output += result + '\n';
+              } else {
+                output += content + '\n';
+              }
+            } catch {
               output += content + '\n';
             }
-          });
+          }
         }
       }
       
-      // Simulación de errores comunes
+      // Validar sintaxis básica
       if (code.includes('print(') && !code.includes(')')) {
         errors.push('SyntaxError: invalid syntax - falta cerrar paréntesis');
       }
@@ -196,6 +231,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     setOutput('');
     setErrors([]);
     setTestResults([]);
+    setExecutionTime(0);
+    setMemoryUsage(0);
   };
 
   const resetCode = () => {
@@ -203,6 +240,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     setOutput('');
     setErrors([]);
     setTestResults([]);
+    setExecutionTime(0);
+    setMemoryUsage(0);
   };
 
   return (
@@ -292,13 +331,15 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
                 </IonCardTitle>
               </IonCardHeader>
               <IonCardContent>
-                <div className="output-content">
+                <div className={`output-content ${output ? 'has-content' : ''}`}>
                   {output ? (
-                    <pre className="output-text">{output}</pre>
+                    <div className="output-text">{output}</div>
                   ) : (
-                    <IonText color="medium">
-                      <p>La salida aparecerá aquí...</p>
-                    </IonText>
+                    <div className="output-placeholder">
+                      <IonText color="medium">
+                        <p>La salida aparecerá aquí...</p>
+                      </IonText>
+                    </div>
                   )}
                 </div>
               </IonCardContent>

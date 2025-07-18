@@ -77,6 +77,35 @@
   min-height: 200px;
   max-height: 400px;
   overflow-y: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  cursor: default;
+  position: relative;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.output-content.has-content {
+  cursor: text;
+}
+
+.output-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 168px;
+  pointer-events: none;
+}
+
+.output-placeholder p {
+  margin: 0;
+  font-style: italic;
+  opacity: 0.7;
 }
 
 .output-text {
@@ -87,6 +116,11 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   color: #2d3748;
+  user-select: text;
+  cursor: text;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 /* Tarjeta de Errores */
@@ -233,13 +267,14 @@
 /* Tema oscuro */
 @media (prefers-color-scheme: dark) {
   .output-content {
-    background: #2d2d2d;
+    background: #1e1e1e;
     border-color: #404040;
     color: #e0e0e0;
   }
   
   .output-text {
     color: #e0e0e0;
+    background: transparent;
   }
   
   .test-case-details {
