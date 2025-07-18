@@ -1176,9 +1176,9 @@ class Empresa {
   ];
 
   const filteredLessons = lessons.filter(lesson => lesson.difficulty === selectedDifficulty);
-  const completedLessons = lessons.filter(lesson => lesson.completed).length;
+  const completedLessonsCount = Object.keys(completedLessonsData).filter(key => completedLessonsData[key]?.completed).length;
   const totalLessons = lessons.length;
-  const progressPercentage = (completedLessons / totalLessons) * 100;
+  const progressPercentage = (completedLessonsCount / totalLessons) * 100;
 
   // Función para verificar si una lección está desbloqueada
   const isLessonUnlocked = (lesson: Lesson) => {
@@ -1187,7 +1187,7 @@ class Empresa {
     // El examen final requiere que todas las lecciones anteriores estén completadas
     if (lesson.id === 17) {
       const previousLessons = lessons.filter(l => l.id < 17);
-      return previousLessons.every(l => l.completed);
+      return previousLessons.every(l => isLessonCompleted(l.id));
     }
     
     return false;
@@ -1243,7 +1243,7 @@ class Empresa {
                   </div>
                   <div className="progress-content">
                     <IonText>
-                      <p>{completedLessons} de {totalLessons} lecciones completadas</p>
+                      <p>{completedLessonsCount} de {totalLessons} lecciones completadas</p>
                     </IonText>
                     <IonProgressBar value={progressPercentage / 100} color="primary" />
                     <IonText>
@@ -1289,7 +1289,7 @@ class Empresa {
                   <IonRow>
                     {filteredLessons.map((lesson) => (
                       <IonCol size="12" sizeMd="6" key={lesson.id}>
-                        <IonCard className={`lesson-card ${lesson.completed ? 'completed' : ''}`}>
+                        <IonCard className={`lesson-card ${isLessonCompleted(lesson.id) ? 'completed' : ''}`}>
                           <IonCardContent>
                             <div className="lesson-header">
                               <div className="lesson-info">
@@ -1310,11 +1310,11 @@ class Empresa {
                               <IonButton
                                 expand="block"
                                 onClick={() => openLesson(lesson)}
-                                color={lesson.completed ? "success" : isLessonUnlocked(lesson) ? "primary" : "medium"}
+                                color={isLessonCompleted(lesson.id) ? "success" : isLessonUnlocked(lesson) ? "primary" : "medium"}
                                 disabled={!isLessonUnlocked(lesson)}
                               >
-                                <IonIcon icon={lesson.completed ? checkmarkCircle : isLessonUnlocked(lesson) ? playCircle : lockClosedOutline} slot="start" />
-                                {lesson.completed ? 'Revisar' : isLessonUnlocked(lesson) ? 'Comenzar' : 'Bloqueado'}
+                                <IonIcon icon={isLessonCompleted(lesson.id) ? checkmarkCircle : isLessonUnlocked(lesson) ? playCircle : lockClosedOutline} slot="start" />
+                                {isLessonCompleted(lesson.id) ? 'Revisar' : isLessonUnlocked(lesson) ? 'Comenzar' : 'Bloqueado'}
                               </IonButton>
                               {lesson.isLocked && !isLessonUnlocked(lesson) && (
                                 <IonText color="medium">
