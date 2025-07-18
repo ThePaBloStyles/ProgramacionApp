@@ -262,14 +262,55 @@ resultado = analizar_texto(texto_ejemplo)`,
     let output = '';
     
     if (lang === 'python') {
-      // Extraer y ejecutar statements print
+      // Crear un contexto para variables
+      const variables: { [key: string]: any } = {};
+      
+      // Extraer y ejecutar código línea por línea
       const lines = code.split('\n');
       
       for (const line of lines) {
         const trimmedLine = line.trim();
         
+        // Ignorar comentarios y líneas vacías
+        if (trimmedLine.startsWith('#') || trimmedLine === '') {
+          continue;
+        }
+        
+        // Manejar asignaciones de variables
+        if (trimmedLine.includes('=') && !trimmedLine.includes('==') && !trimmedLine.includes('!=')) {
+          const [varName, value] = trimmedLine.split('=').map(s => s.trim());
+          
+          if (value.startsWith('"') && value.endsWith('"')) {
+            // String literal
+            variables[varName] = value.slice(1, -1);
+          } else if (value.startsWith("'") && value.endsWith("'")) {
+            // String literal con comillas simples
+            variables[varName] = value.slice(1, -1);
+          } else if (!isNaN(Number(value))) {
+            // Número
+            variables[varName] = Number(value);
+          } else if (value === 'True') {
+            variables[varName] = true;
+          } else if (value === 'False') {
+            variables[varName] = false;
+          } else if (variables[value] !== undefined) {
+            // Referencia a otra variable
+            variables[varName] = variables[value];
+          } else {
+            // Expresión matemática simple
+            try {
+              const result = eval(value.replace(/[a-zA-Z_][a-zA-Z0-9_]*/g, (match) => {
+                return variables[match] !== undefined ? variables[match] : match;
+              }));
+              variables[varName] = result;
+            } catch {
+              variables[varName] = value;
+            }
+          }
+        }
+        
         // Manejar print statements
-        if (trimmedLine.startsWith('print(') && trimmedLine.endsWith(')')) {
+        else if (trimmedLine.startsWith('print(') && trimmedLine.endsWith(')')) {
           const content = trimmedLine.slice(6, -1); // Remover 'print(' y ')'
           
           if (content.startsWith('"') && content.endsWith('"')) {
@@ -278,19 +319,47 @@ resultado = analizar_texto(texto_ejemplo)`,
           } else if (content.startsWith("'") && content.endsWith("'")) {
             // String literal con comillas simples
             output += content.slice(1, -1) + '\n';
-          } else {
-            // Expresión o variable simple
-            try {
-              // Evaluar expresiones matemáticas simples
-              if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(content)) {
-                const result = eval(content);
-                output += result + '\n';
-              } else {
-                output += content + '\n';
-              }
-            } catch {
-              output += content + '\n';
+          } else if (content.includes('f"') || content.includes("f'")) {
+            // f-string básico
+            let fString = content;
+            if (fString.startsWith('f"') && fString.endsWith('"')) {
+              fString = fString.slice(2, -1);
+            } else if (fString.startsWith("f'") && fString.endsWith("'")) {
+              fString = fString.slice(2, -1);
             }
+            
+            // Reemplazar variables en f-string
+            const result = fString.replace(/\{([^}]+)\}/g, (match, varName) => {
+              const cleanVarName = varName.trim();
+              if (variables[cleanVarName] !== undefined) {
+                return variables[cleanVarName];
+              }
+              return match;
+            });
+            
+            output += result + '\n';
+          } else {
+            // Variable o expresión
+            const parts = content.split(',').map(part => part.trim());
+            const result = parts.map(part => {
+              if (variables[part] !== undefined) {
+                return variables[part];
+              } else if (!isNaN(Number(part))) {
+                return Number(part);
+              } else {
+                // Expresión matemática simple
+                try {
+                  const evalResult = eval(part.replace(/[a-zA-Z_][a-zA-Z0-9_]*/g, (match) => {
+                    return variables[match] !== undefined ? variables[match] : match;
+                  }));
+                  return evalResult;
+                } catch {
+                  return part;
+                }
+              }
+            }).join(' ');
+            
+            output += result + '\n';
           }
         }
       }
