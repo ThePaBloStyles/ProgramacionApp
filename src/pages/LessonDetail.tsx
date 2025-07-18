@@ -2295,7 +2295,7 @@ class Biblioteca:
           {/* Editor de Código Interactivo */}
           <CodeEditor
             language={language as 'python' | 'java'}
-            initialCode={lesson.codeExample}
+            initialCode=""
             testCases={getTestCasesForLesson(language as 'python' | 'java', parseInt(lessonId))}
             onCodeChange={(code) => setUserCode(code)}
             onTestsComplete={(passed, total) => {

@@ -327,7 +327,25 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           <IonTextarea
             value={code}
             onIonInput={(e) => setCode(e.detail.value!)}
-            placeholder={`Escribe tu código ${language} aquí...`}
+            placeholder={language === 'python' ? 
+              `¡Escribe tu código Python aquí para resolver el ejercicio! 🐍
+
+# Ejemplo básico:
+print("¡Hola, mundo!")
+
+# Recuerda usar la teoría de la lección para guiarte
+# ¡Puedes hacerlo! 💪` : 
+              `¡Escribe tu código Java aquí para resolver el ejercicio! ☕
+
+// Ejemplo básico:
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("¡Hola, mundo!");
+    }
+}
+
+// Recuerda usar la teoría de la lección para guiarte
+// ¡Puedes hacerlo! 💪`}
             className="code-textarea"
             rows={15}
             spellcheck={false}
