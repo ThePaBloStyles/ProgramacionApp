@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonContent,
   IonPage,
@@ -14,7 +14,8 @@ import {
   IonText,
   IonChip,
   IonLabel,
-  IonBadge
+  IonBadge,
+  IonToast
 } from '@ionic/react';
 import { 
   logoJavascript, 
@@ -38,6 +39,18 @@ import {
 import './Home.css';
 
 const Home: React.FC = () => {
+  // Estado para mostrar el toast de confirmación
+  const [showToast, setShowToast] = useState(false);
+  const [toastMsg, setToastMsg] = useState('');
+
+  // Función para resetear progreso por lenguaje
+  const handleResetProgress = (lang: 'python' | 'java') => {
+    const key = lang === 'python' ? 'lesson_progress_python' : 'lesson_progress_java';
+    localStorage.removeItem(key);
+    setToastMsg(`Progreso de ${lang === 'python' ? 'Python' : 'Java'} reiniciado`);
+    setShowToast(true);
+  };
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -281,7 +294,6 @@ const Home: React.FC = () => {
                 <p>Herramientas para acelerar tu aprendizaje</p>
               </IonText>
             </div>
-            
             <IonGrid>
               <IonRow>
                 <IonCol size="12" sizeMd="6">
@@ -321,7 +333,51 @@ const Home: React.FC = () => {
                   </IonCard>
                 </IonCol>
               </IonRow>
+              <IonRow>
+                <IonCol size="12" sizeMd="6">
+                  <IonCard className="action-card reset-action">
+                    <div className="action-glow reset-glow"></div>
+                    <IonCardContent className="action-content">
+                      <div className="action-icon-container">
+                        <IonIcon icon={school} />
+                      </div>
+                      <div className="action-info">
+                        <h3>Reiniciar progreso Python</h3>
+                        <p>Borra tu avance en el curso de Python</p>
+                      </div>
+                      <IonButton fill="outline" color="danger" onClick={() => handleResetProgress('python')} className="action-button">
+                        Reiniciar Python
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+                <IonCol size="12" sizeMd="6">
+                  <IonCard className="action-card reset-action">
+                    <div className="action-glow reset-glow"></div>
+                    <IonCardContent className="action-content">
+                      <div className="action-icon-container">
+                        <IonIcon icon={school} />
+                      </div>
+                      <div className="action-info">
+                        <h3>Reiniciar progreso Java</h3>
+                        <p>Borra tu avance en el curso de Java</p>
+                      </div>
+                      <IonButton fill="outline" color="danger" onClick={() => handleResetProgress('java')} className="action-button">
+                        Reiniciar Java
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+              </IonRow>
             </IonGrid>
+            <IonToast
+              isOpen={showToast}
+              onDidDismiss={() => setShowToast(false)}
+              message={toastMsg}
+              duration={1800}
+              color="medium"
+              position="bottom"
+            />
           </div>
         </div>
       </IonContent>
