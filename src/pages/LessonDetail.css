@@ -372,6 +372,35 @@
   padding: 20px;
 }
 
+/* Complete Lesson Card */
+.complete-lesson-card {
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.complete-lesson-card ion-card-content {
+  padding: 20px;
+}
+
+.complete-lesson-actions {
+  text-align: center;
+}
+
+.complete-lesson-actions ion-button {
+  font-weight: 600;
+  font-size: 1.1em;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.complete-lesson-actions ion-button:hover {
+  transform: translateY(-2px);
+  --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .quiz-navigation {
     flex-direction: column;

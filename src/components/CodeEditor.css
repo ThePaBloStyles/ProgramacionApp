@@ -1,0 +1,253 @@
+/* Estilos para el Editor de Código */
+.code-editor-container {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.code-editor-card {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editor-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ion-color-primary);
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.code-textarea {
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  resize: vertical;
+  min-height: 300px;
+}
+
+.code-textarea::part(native) {
+  background: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.editor-actions ion-button {
+  flex: 1;
+  min-width: 120px;
+  font-weight: 600;
+}
+
+.execution-info {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.execution-info ion-chip {
+  font-size: 0.9em;
+}
+
+/* Tarjeta de Salida */
+.output-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.output-content {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.output-text {
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #2d3748;
+}
+
+/* Tarjeta de Errores */
+.errors-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.errors-card ion-list {
+  background: transparent;
+}
+
+.errors-card ion-item {
+  --background: rgba(244, 67, 54, 0.1);
+  --color: #d32f2f;
+  border-radius: 8px;
+  margin: 8px 0;
+  border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+/* Casos de Prueba */
+.test-cases-card {
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.test-case-content {
+  width: 100%;
+  padding: 12px 0;
+}
+
+.test-case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.test-case-header h4 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+.test-case-details {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px;
+  border-left: 4px solid var(--ion-color-primary);
+}
+
+.test-case-details p {
+  margin: 4px 0;
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+.test-case-details strong {
+  color: var(--ion-color-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .code-editor-container {
+    padding: 12px;
+  }
+  
+  .editor-actions {
+    flex-direction: column;
+  }
+  
+  .editor-actions ion-button {
+    flex: none;
+    width: 100%;
+  }
+  
+  .execution-info {
+    justify-content: center;
+  }
+  
+  .code-textarea {
+    font-size: 13px;
+    min-height: 250px;
+  }
+  
+  .output-content {
+    min-height: 150px;
+    max-height: 300px;
+  }
+}
+
+/* Syntax Highlighting Simulation */
+.code-textarea:focus {
+  outline: none;
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb), 0.2);
+}
+
+/* Estados de los botones */
+.editor-actions ion-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Animaciones */
+.output-card, .errors-card, .test-cases-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.output-card:hover, .errors-card:hover, .test-cases-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Indicadores de estado */
+.test-case-content ion-badge {
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
+/* Scrollbar personalizada */
+.output-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.output-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.output-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.output-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Tema oscuro */
+@media (prefers-color-scheme: dark) {
+  .output-content {
+    background: #2d2d2d;
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+  
+  .output-text {
+    color: #e0e0e0;
+  }
+  
+  .test-case-details {
+    background: #2d2d2d;
+    color: #e0e0e0;
+  }
+  
+  .test-case-details strong {
+    color: #ffffff;
+  }
+}

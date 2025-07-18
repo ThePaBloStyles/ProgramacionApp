@@ -27,7 +27,9 @@ import {
 } from 'ionicons/icons';
 import { useParams, useHistory } from 'react-router-dom';
 import QuizComponent from '../components/QuizComponent';
+import CodeEditor from '../components/CodeEditor';
 import { javaQuizzes, pythonQuizzes } from '../data/quizData';
+import { getTestCasesForLesson } from '../data/testCases';
 import './LessonDetail.css';
 
 interface Lesson {
@@ -2271,34 +2273,31 @@ class Biblioteca:
             </IonCardContent>
           </IonCard>
 
-          {/* Ejercicio */}
-          <IonCard className="exercise-card">
+          {/* Editor de Código Interactivo */}
+          <CodeEditor
+            language={language as 'python' | 'java'}
+            initialCode={lesson.codeExample}
+            testCases={getTestCasesForLesson(language as 'python' | 'java', parseInt(lessonId))}
+            onCodeChange={(code) => setUserCode(code)}
+            onTestsComplete={(passed, total) => {
+              if (passed === total) {
+                setToastMessage('¡Excelente! Todos los tests pasaron.');
+                setShowToast(true);
+              } else {
+                setToastMessage(`${passed}/${total} tests pasaron. ¡Sigue intentando!`);
+                setShowToast(true);
+              }
+            }}
+          />
+
+          {/* Botón para completar lección */}
+          <IonCard className="complete-lesson-card">
             <IonCardContent>
-              <div className="exercise-header">
-                <IonIcon icon={checkmarkCircle} />
-                <IonText>
-                  <h3>Ejercicio</h3>
-                </IonText>
-              </div>
-              <div className="exercise-content">
-                <p>{lesson.exercise}</p>
-                <IonTextarea
-                  value={userCode}
-                  placeholder="Escribe tu código aquí..."
-                  onIonInput={(e) => setUserCode(e.detail.value!)}
-                  className="code-input"
-                  rows={8}
-                />
-                <div className="exercise-actions">
-                  <IonButton expand="block" onClick={handleRunCode} color="primary">
-                    <IonIcon icon={codeSlash} slot="start" />
-                    Ejecutar código
-                  </IonButton>
-                  <IonButton expand="block" onClick={handleCompleteLesson} color="success">
-                    <IonIcon icon={school} slot="start" />
-                    Tomar Quiz y Completar Lección
-                  </IonButton>
-                </div>
+              <div className="complete-lesson-actions">
+                <IonButton expand="block" onClick={handleCompleteLesson} color="success" size="large">
+                  <IonIcon icon={school} slot="start" />
+                  Tomar Quiz y Completar Lección
+                </IonButton>
               </div>
             </IonCardContent>
           </IonCard>
