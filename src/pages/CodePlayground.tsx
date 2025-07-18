@@ -47,30 +47,52 @@ interface CodeExample {
 }
 
 const CodePlayground: React.FC = () => {
-  const [code, setCode] = useState(`# ¡Bienvenido al Playground de Python! 🐍
-# Aquí puedes escribir y probar código Python
+  const [code, setCode] = useState(`# ¡Bienvenido al Playground de Python Avanzado! 🐍
+# Este playground ahora soporta funciones, bucles, condicionales y más!
 
-# Ejemplo: Calculadora simple
-def calculadora(a, b, operacion):
-    if operacion == "suma":
-        return a + b
-    elif operacion == "resta":
-        return a - b
-    elif operacion == "multiplicacion":
-        return a * b
-    elif operacion == "division":
-        return a / b if b != 0 else "Error: División por cero"
+import random
+import math
+
+# Ejemplo 1: Función con bucles y condicionales
+def es_primo(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Ejemplo 2: Trabajar con listas
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+primos = []
+
+for num in numeros:
+    if es_primo(num):
+        primos.append(num)
+
+print("Números del 1 al 10:")
+print(numeros)
+print("Números primos encontrados:")
+print(primos)
+
+# Ejemplo 3: Juego simple
+numero_secreto = random.randint(1, 10)
+print(f"\\nJuego: ¿Adivina el número del 1 al 10?")
+print(f"(El número secreto es: {numero_secreto})")
+
+# Simulamos algunos intentos
+intentos = [5, 8, numero_secreto]
+for i, intento in enumerate(intentos):
+    print(f"Intento {i+1}: {intento}")
+    if intento == numero_secreto:
+        print("¡Correcto! 🎉")
+        break
+    elif intento < numero_secreto:
+        print("Muy bajo")
     else:
-        return "Operación no válida"
+        print("Muy alto")
 
-# Prueba la calculadora
-resultado = calculadora(10, 5, "suma")
-print(f"10 + 5 = {resultado}")
-
-resultado = calculadora(10, 3, "multiplicacion")
-print(f"10 * 3 = {resultado}")
-
-# Tu código aquí...
+# ¡Prueba tu propio código aquí!
 `);
 
   const [output, setOutput] = useState('');
@@ -97,137 +119,312 @@ print(f"Hola, {nombre}!")`,
     },
     {
       id: 2,
-      title: "Lista de Tareas",
-      code: `# Lista de tareas simple
-tareas = []
-
-def agregar_tarea(tarea):
-    tareas.append(tarea)
-    print(f"Tarea agregada: {tarea}")
-
-def mostrar_tareas():
-    print("\\n--- Lista de Tareas ---")
-    for i, tarea in enumerate(tareas, 1):
-        print(f"{i}. {tarea}")
-
-def completar_tarea(indice):
-    if 0 <= indice < len(tareas):
-        tarea = tareas.pop(indice)
-        print(f"Tarea completada: {tarea}")
+      title: "Calculadora Avanzada",
+      code: `# Calculadora con funciones y validación
+def calculadora():
+    def suma(a, b):
+        return a + b
+    
+    def resta(a, b):
+        return a - b
+    
+    def multiplicacion(a, b):
+        return a * b
+    
+    def division(a, b):
+        if b == 0:
+            return "Error: División por cero"
+        return a / b
+    
+    # Menú de operaciones
+    operaciones = {
+        "1": suma,
+        "2": resta,
+        "3": multiplicacion,
+        "4": division
+    }
+    
+    print("=== CALCULADORA AVANZADA ===")
+    print("1. Suma")
+    print("2. Resta")
+    print("3. Multiplicación")
+    print("4. División")
+    
+    # Simulamos selección del usuario
+    opcion = "1"  # Suma
+    num1 = 15
+    num2 = 7
+    
+    print(f"\\nSeleccionaste: Opción {opcion}")
+    print(f"Números: {num1} y {num2}")
+    
+    if opcion in operaciones:
+        resultado = operaciones[opcion](num1, num2)
+        print(f"Resultado: {resultado}")
     else:
-        print("Tarea no encontrada")
+        print("Opción no válida")
+    
+    # Probamos todas las operaciones
+    print("\\n=== PRUEBA DE TODAS LAS OPERACIONES ===")
+    for op, func in operaciones.items():
+        resultado = func(num1, num2)
+        nombres = ["Suma", "Resta", "Multiplicación", "División"]
+        print(f"{nombres[int(op)-1]}: {num1} y {num2} = {resultado}")
 
-# Ejemplos de uso
-agregar_tarea("Estudiar Python")
-agregar_tarea("Hacer ejercicio")
-agregar_tarea("Leer un libro")
-mostrar_tareas()
-
-completar_tarea(0)
-mostrar_tareas()`,
+calculadora()`,
       language: "python",
-      description: "Gestor simple de tareas",
+      description: "Calculadora con funciones y menú interactivo",
       category: "Intermedio"
     },
     {
       id: 3,
-      title: "Juego de Adivinanza",
-      code: `import random
+      title: "Análisis de Datos",
+      code: `# Análisis de datos con funciones avanzadas
+import random
+import math
 
-def juego_adivinanza():
-    numero_secreto = random.randint(1, 100)
-    intentos = 0
-    max_intentos = 7
-    
-    print("¡Juego de Adivinanza!")
-    print(f"Adivina el número entre 1 y 100")
-    print(f"Tienes {max_intentos} intentos")
-    
-    while intentos < max_intentos:
-        try:
-            # Simulamos entrada del usuario
-            if intentos == 0:
-                adivinanza = 50
-            elif intentos == 1:
-                adivinanza = 25 if numero_secreto < 50 else 75
-            else:
-                adivinanza = random.randint(1, 100)
-            
-            print(f"\\nIntento {intentos + 1}: {adivinanza}")
-            intentos += 1
-            
-            if adivinanza == numero_secreto:
-                print(f"¡Felicidades! El número era {numero_secreto}")
-                print(f"Lo adivinaste en {intentos} intentos")
-                break
-            elif adivinanza < numero_secreto:
-                print("El número es mayor")
-            else:
-                print("El número es menor")
-        
-        except ValueError:
-            print("Por favor, ingresa un número válido")
-    
-    if intentos == max_intentos and adivinanza != numero_secreto:
-        print(f"\\nGame Over! El número era {numero_secreto}")
+def generar_datos(n):
+    """Genera una lista de datos aleatorios"""
+    return [random.randint(1, 100) for _ in range(n)]
 
-# Ejecutar el juego
-juego_adivinanza()`,
+def estadisticas(datos):
+    """Calcula estadísticas básicas"""
+    if not datos:
+        return None
+    
+    n = len(datos)
+    suma = sum(datos)
+    promedio = suma / n
+    
+    # Calcular mediana
+    datos_ordenados = sorted(datos)
+    if n % 2 == 0:
+        mediana = (datos_ordenados[n//2 - 1] + datos_ordenados[n//2]) / 2
+    else:
+        mediana = datos_ordenados[n//2]
+    
+    # Calcular moda (valor más frecuente)
+    frecuencias = {}
+    for valor in datos:
+        frecuencias[valor] = frecuencias.get(valor, 0) + 1
+    
+    moda = max(frecuencias, key=frecuencias.get)
+    
+    # Calcular desviación estándar
+    varianza = sum((x - promedio) ** 2 for x in datos) / n
+    desviacion = math.sqrt(varianza)
+    
+    return {
+        'n': n,
+        'suma': suma,
+        'promedio': promedio,
+        'mediana': mediana,
+        'moda': moda,
+        'min': min(datos),
+        'max': max(datos),
+        'desviacion': desviacion
+    }
+
+def clasificar_datos(datos):
+    """Clasifica datos en categorías"""
+    bajos = []
+    medios = []
+    altos = []
+    
+    for valor in datos:
+        if valor < 33:
+            bajos.append(valor)
+        elif valor < 67:
+            medios.append(valor)
+        else:
+            altos.append(valor)
+    
+    return bajos, medios, altos
+
+# Generar datos de ejemplo
+print("=== ANÁLISIS DE DATOS ===")
+datos = generar_datos(20)
+print(f"Datos generados ({len(datos)} valores):")
+print(datos)
+
+# Calcular estadísticas
+stats = estadisticas(datos)
+print(f"\\n=== ESTADÍSTICAS ===")
+print(f"Promedio: {stats['promedio']:.2f}")
+print(f"Mediana: {stats['mediana']}")
+print(f"Moda: {stats['moda']}")
+print(f"Mínimo: {stats['min']}")
+print(f"Máximo: {stats['max']}")
+print(f"Desviación estándar: {stats['desviacion']:.2f}")
+
+# Clasificar datos
+bajos, medios, altos = clasificar_datos(datos)
+print(f"\\n=== CLASIFICACIÓN ===")
+print(f"Valores bajos (1-33): {len(bajos)} valores")
+print(f"Valores medios (34-66): {len(medios)} valores")
+print(f"Valores altos (67-100): {len(altos)} valores")
+
+# Encontrar outliers (valores extremos)
+outliers = []
+for valor in datos:
+    if abs(valor - stats['promedio']) > 2 * stats['desviacion']:
+        outliers.append(valor)
+
+print(f"\\n=== OUTLIERS ===")
+if outliers:
+    print(f"Valores extremos encontrados: {outliers}")
+else:
+    print("No se encontraron valores extremos")`,
       language: "python",
-      description: "Juego interactivo de adivinanza",
-      category: "Intermedio"
+      description: "Análisis estadístico completo de datos",
+      category: "Avanzado"
     },
     {
       id: 4,
       title: "Analizador de Texto",
-      code: `def analizar_texto(texto):
-    """
-    Analiza un texto y devuelve estadísticas
-    """
+      code: `# Analizador de texto con funciones avanzadas
+import random
+
+def generar_texto_ejemplo():
+    """Genera un texto de ejemplo para análisis"""
+    frases = [
+        "Python es un lenguaje de programación potente y versátil.",
+        "La programación es una habilidad esencial en el mundo digital.",
+        "Los algoritmos son la base fundamental de la informática moderna.",
+        "El aprendizaje automático está revolucionando múltiples industrias.",
+        "Los desarrolladores deben mantenerse actualizados constantemente.",
+        "La inteligencia artificial transforma la manera de trabajar.",
+        "Python facilita el desarrollo de aplicaciones complejas."
+    ]
+    return " ".join(random.sample(frases, 4))
+
+def analizar_texto(texto):
+    """Analiza un texto y devuelve estadísticas completas"""
     # Estadísticas básicas
     palabras = texto.split()
     caracteres = len(texto)
     caracteres_sin_espacios = len(texto.replace(' ', ''))
-    lineas = len(texto.split('\\n'))
+    oraciones = len([s for s in texto.split('.') if s.strip()])
+    
+    # Análisis de palabras
+    frecuencia_palabras = {}
+    longitudes_palabras = []
+    
+    for palabra in palabras:
+        palabra_limpia = palabra.lower().strip('.,!?;:"()')
+        if len(palabra_limpia) > 2:  # Ignorar palabras muy cortas
+            frecuencia_palabras[palabra_limpia] = frecuencia_palabras.get(palabra_limpia, 0) + 1
+            longitudes_palabras.append(len(palabra_limpia))
     
     # Palabras más comunes
-    frecuencia_palabras = {}
-    for palabra in palabras:
-        palabra_limpia = palabra.lower().strip('.,!?;:"')
-        frecuencia_palabras[palabra_limpia] = frecuencia_palabras.get(palabra_limpia, 0) + 1
-    
-    # Ordenar por frecuencia
     palabras_comunes = sorted(frecuencia_palabras.items(), key=lambda x: x[1], reverse=True)
     
-    # Mostrar resultados
-    print("=== ANÁLISIS DE TEXTO ===")
-    print(f"Palabras: {len(palabras)}")
-    print(f"Caracteres: {caracteres}")
-    print(f"Caracteres sin espacios: {caracteres_sin_espacios}")
-    print(f"Líneas: {lineas}")
-    print(f"Promedio de palabras por línea: {len(palabras) / lineas:.1f}")
-    
-    print("\\n--- Palabras más comunes ---")
-    for palabra, frecuencia in palabras_comunes[:5]:
-        print(f"{palabra}: {frecuencia}")
+    # Estadísticas de longitud
+    promedio_longitud = sum(longitudes_palabras) / len(longitudes_palabras) if longitudes_palabras else 0
+    palabra_mas_larga = max(palabras, key=len) if palabras else ""
     
     return {
-        'palabras': len(palabras),
-        'caracteres': caracteres,
-        'lineas': lineas,
-        'palabras_comunes': palabras_comunes[:5]
+        'total_palabras': len(palabras),
+        'total_caracteres': caracteres,
+        'caracteres_sin_espacios': caracteres_sin_espacios,
+        'total_oraciones': oraciones,
+        'palabras_comunes': palabras_comunes[:5],
+        'promedio_longitud': promedio_longitud,
+        'palabra_mas_larga': palabra_mas_larga,
+        'palabras_unicas': len(frecuencia_palabras)
     }
 
-# Ejemplo de uso
-texto_ejemplo = """
-Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código.
-Se trata de un lenguaje de programación multiparadigma, ya que soporta orientación a objetos, programación imperativa y, en menor medida, programación funcional.
-Es un lenguaje interpretado, dinámico y multiplataforma.
-"""
+def cifrar_cesar(texto, desplazamiento=3):
+    """Aplica el cifrado César al texto"""
+    resultado = ""
+    for char in texto:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            char_cifrado = chr((ord(char) - base + desplazamiento) % 26 + base)
+            resultado += char_cifrado
+        else:
+            resultado += char
+    return resultado
 
-resultado = analizar_texto(texto_ejemplo)`,
+def contar_vocales_consonantes(texto):
+    """Cuenta vocales y consonantes en el texto"""
+    vocales = "aeiouAEIOU"
+    contador_vocales = 0
+    contador_consonantes = 0
+    
+    for char in texto:
+        if char.isalpha():
+            if char in vocales:
+                contador_vocales += 1
+            else:
+                contador_consonantes += 1
+    
+    return contador_vocales, contador_consonantes
+
+def extraer_palabras_clave(texto):
+    """Extrae palabras clave eliminando palabras comunes"""
+    palabras_comunes = ['el', 'la', 'de', 'que', 'y', 'a', 'en', 'un', 'es', 'se', 'no', 'te', 'lo', 'le', 'da', 'su', 'por', 'son', 'con', 'para', 'al', 'del', 'los', 'las', 'una', 'está', 'este', 'como', 'pero', 'han', 'muy', 'más', 'son', 'ser', 'uso', 'puede', 'hace', 'debe', 'mundo', 'cada', 'sobre', 'entre', 'durante', 'también', 'sin', 'hasta', 'bajo', 'desde', 'donde', 'mientras', 'porque', 'aunque', 'cuando', 'antes', 'después', 'dentro', 'fuera', 'contra', 'desde', 'hacia', 'según']
+    
+    palabras = texto.lower().split()
+    palabras_clave = []
+    
+    for palabra in palabras:
+        palabra_limpia = palabra.strip('.,!?;:"()')
+        if len(palabra_limpia) > 4 and palabra_limpia not in palabras_comunes:
+            if palabra_limpia not in palabras_clave:
+                palabras_clave.append(palabra_limpia)
+    
+    return palabras_clave
+
+# Generar y analizar texto
+print("=== ANALIZADOR DE TEXTO AVANZADO ===")
+texto = generar_texto_ejemplo()
+print(f"Texto a analizar:")
+print(f'"{texto}"')
+
+# Realizar análisis completo
+analisis = analizar_texto(texto)
+print(f"\\n=== ESTADÍSTICAS GENERALES ===")
+print(f"Total de palabras: {analisis['total_palabras']}")
+print(f"Total de caracteres: {analisis['total_caracteres']}")
+print(f"Caracteres sin espacios: {analisis['caracteres_sin_espacios']}")
+print(f"Total de oraciones: {analisis['total_oraciones']}")
+print(f"Palabras únicas: {analisis['palabras_unicas']}")
+print(f"Promedio de longitud de palabra: {analisis['promedio_longitud']:.1f}")
+print(f"Palabra más larga: '{analisis['palabra_mas_larga']}'")
+
+# Mostrar palabras más comunes
+print(f"\\n=== PALABRAS MÁS FRECUENTES ===")
+for palabra, frecuencia in analisis['palabras_comunes']:
+    print(f"{palabra}: {frecuencia} veces")
+
+# Contar vocales y consonantes
+vocales, consonantes = contar_vocales_consonantes(texto)
+print(f"\\n=== ANÁLISIS DE LETRAS ===")
+print(f"Vocales: {vocales}")
+print(f"Consonantes: {consonantes}")
+print(f"Ratio vocales/consonantes: {vocales/consonantes:.2f}" if consonantes > 0 else "N/A")
+
+# Extraer palabras clave
+palabras_clave = extraer_palabras_clave(texto)
+print(f"\\n=== PALABRAS CLAVE ===")
+print(f"Palabras clave encontradas: {len(palabras_clave)}")
+for palabra in palabras_clave[:5]:  # Mostrar solo las primeras 5
+    print(f"- {palabra}")
+
+# Cifrar texto
+texto_cifrado = cifrar_cesar(texto, 3)
+print(f"\\n=== CIFRADO CÉSAR ===")
+print(f"Texto cifrado (desplazamiento 3):")
+print(f"'{texto_cifrado[:60]}...'")
+
+# Análisis adicional
+print(f"\\n=== ANÁLISIS ADICIONAL ===")
+print(f"Densidad de información: {analisis['palabras_unicas']/analisis['total_palabras']:.2f}")
+print(f"Palabras por oración: {analisis['total_palabras']/analisis['total_oraciones']:.1f}")
+print(f"Complejidad léxica: {'Alta' if analisis['promedio_longitud'] > 6 else 'Media' if analisis['promedio_longitud'] > 4 else 'Baja'}")`,
       language: "python",
-      description: "Análisis de texto con estadísticas",
+      description: "Análisis completo de texto con estadísticas avanzadas",
       category: "Avanzado"
     }
   ];
@@ -262,135 +459,498 @@ resultado = analizar_texto(texto_ejemplo)`,
     let output = '';
     
     if (lang === 'python') {
-      // Crear un contexto para variables
-      const variables: { [key: string]: any } = {};
-      
-      // Extraer y ejecutar código línea por línea
-      const lines = code.split('\n');
-      
-      for (const line of lines) {
-        const trimmedLine = line.trim();
+      try {
+        // Crear un contexto de ejecución más completo
+        const context = {
+          variables: {} as { [key: string]: any },
+          functions: {} as { [key: string]: any },
+          output: '',
+          imports: {} as { [key: string]: any }
+        };
         
-        // Ignorar comentarios y líneas vacías
-        if (trimmedLine.startsWith('#') || trimmedLine === '') {
-          continue;
-        }
+        // Simular algunas librerías básicas
+        context.imports['random'] = {
+          randint: (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min,
+          random: () => Math.random(),
+          choice: (arr: any[]) => arr[Math.floor(Math.random() * arr.length)]
+        };
         
-        // Manejar asignaciones de variables
-        if (trimmedLine.includes('=') && !trimmedLine.includes('==') && !trimmedLine.includes('!=')) {
-          const [varName, value] = trimmedLine.split('=').map(s => s.trim());
+        context.imports['math'] = {
+          pi: Math.PI,
+          sqrt: Math.sqrt,
+          pow: Math.pow,
+          abs: Math.abs,
+          floor: Math.floor,
+          ceil: Math.ceil,
+          round: Math.round
+        };
+        
+        // Procesar el código línea por línea
+        const lines = code.split('\n');
+        let i = 0;
+        
+        while (i < lines.length) {
+          const line = lines[i].trim();
           
-          if (value.startsWith('"') && value.endsWith('"')) {
-            // String literal
-            variables[varName] = value.slice(1, -1);
-          } else if (value.startsWith("'") && value.endsWith("'")) {
-            // String literal con comillas simples
-            variables[varName] = value.slice(1, -1);
-          } else if (!isNaN(Number(value))) {
-            // Número
-            variables[varName] = Number(value);
-          } else if (value === 'True') {
-            variables[varName] = true;
-          } else if (value === 'False') {
-            variables[varName] = false;
-          } else if (variables[value] !== undefined) {
-            // Referencia a otra variable
-            variables[varName] = variables[value];
-          } else {
-            // Expresión matemática simple
-            try {
-              const result = eval(value.replace(/[a-zA-Z_][a-zA-Z0-9_]*/g, (match) => {
-                return variables[match] !== undefined ? variables[match] : match;
-              }));
-              variables[varName] = result;
-            } catch {
-              variables[varName] = value;
-            }
+          // Ignorar comentarios y líneas vacías
+          if (line.startsWith('#') || line === '') {
+            i++;
+            continue;
           }
-        }
-        
-        // Manejar print statements
-        else if (trimmedLine.startsWith('print(') && trimmedLine.endsWith(')')) {
-          const content = trimmedLine.slice(6, -1); // Remover 'print(' y ')'
           
-          if (content.startsWith('"') && content.endsWith('"')) {
-            // String literal
-            output += content.slice(1, -1) + '\n';
-          } else if (content.startsWith("'") && content.endsWith("'")) {
-            // String literal con comillas simples
-            output += content.slice(1, -1) + '\n';
-          } else if (content.includes('f"') || content.includes("f'")) {
-            // f-string básico
-            let fString = content;
-            if (fString.startsWith('f"') && fString.endsWith('"')) {
-              fString = fString.slice(2, -1);
-            } else if (fString.startsWith("f'") && fString.endsWith("'")) {
-              fString = fString.slice(2, -1);
+          // Manejar imports
+          if (line.startsWith('import ')) {
+            const moduleName = line.replace('import ', '').trim();
+            if (context.imports[moduleName]) {
+              context.variables[moduleName] = context.imports[moduleName];
             }
+            i++;
+            continue;
+          }
+          
+          // Manejar from import
+          if (line.startsWith('from ') && line.includes(' import ')) {
+            const parts = line.split(' import ');
+            const moduleName = parts[0].replace('from ', '').trim();
+            const imports = parts[1].split(',').map(s => s.trim());
             
-            // Reemplazar variables en f-string
-            const result = fString.replace(/\{([^}]+)\}/g, (match, varName) => {
-              const cleanVarName = varName.trim();
-              if (variables[cleanVarName] !== undefined) {
-                return variables[cleanVarName];
-              }
-              return match;
-            });
-            
-            output += result + '\n';
-          } else {
-            // Variable o expresión
-            const parts = content.split(',').map(part => part.trim());
-            const result = parts.map(part => {
-              if (variables[part] !== undefined) {
-                return variables[part];
-              } else if (!isNaN(Number(part))) {
-                return Number(part);
-              } else {
-                // Expresión matemática simple
-                try {
-                  const evalResult = eval(part.replace(/[a-zA-Z_][a-zA-Z0-9_]*/g, (match) => {
-                    return variables[match] !== undefined ? variables[match] : match;
-                  }));
-                  return evalResult;
-                } catch {
-                  return part;
+            if (context.imports[moduleName]) {
+              imports.forEach(imp => {
+                if (context.imports[moduleName][imp]) {
+                  context.variables[imp] = context.imports[moduleName][imp];
                 }
-              }
-            }).join(' ');
-            
-            output += result + '\n';
-          }
-        }
-      }
-      
-      // Validar sintaxis básica
-      if (code.includes('print(') && !code.includes(')')) {
-        errors.push('SyntaxError: invalid syntax - falta cerrar paréntesis');
-      }
-      
-    } else if (lang === 'java') {
-      // Validaciones básicas para Java
-      if (code.includes('System.out.println(')) {
-        const printMatches = code.match(/System\.out\.println\(([^)]+)\)/g);
-        if (printMatches) {
-          printMatches.forEach(match => {
-            const content = match.replace(/System\.out\.println\(|\)/g, '');
-            if (content.includes('"')) {
-              output += content.replace(/"/g, '') + '\n';
-            } else {
-              output += content + '\n';
+              });
             }
-          });
+            i++;
+            continue;
+          }
+          
+          // Manejar definición de funciones
+          if (line.startsWith('def ')) {
+            const funcResult = parseFunction(lines, i, context);
+            i = funcResult.nextIndex;
+            continue;
+          }
+          
+          // Manejar estructuras de control
+          if (line.startsWith('if ') || line.startsWith('elif ') || line.startsWith('else:')) {
+            const ifResult = parseIfStatement(lines, i, context);
+            i = ifResult.nextIndex;
+            continue;
+          }
+          
+          if (line.startsWith('for ')) {
+            const forResult = parseForLoop(lines, i, context);
+            i = forResult.nextIndex;
+            continue;
+          }
+          
+          if (line.startsWith('while ')) {
+            const whileResult = parseWhileLoop(lines, i, context);
+            i = whileResult.nextIndex;
+            continue;
+          }
+          
+          // Ejecutar línea individual
+          executeLine(line, context);
+          i++;
         }
+        
+        return { output: context.output.trim(), errors };
+        
+      } catch (error) {
+        errors.push(`Error: ${error}`);
+        return { output: '', errors };
       }
     }
     
     return { output: output.trim(), errors };
   };
 
+  // Función para parsear funciones
+  const parseFunction = (lines: string[], startIndex: number, context: any) => {
+    const funcLine = lines[startIndex].trim();
+    const funcMatch = funcLine.match(/def\s+(\w+)\s*\(([^)]*)\):/);
+    
+    if (!funcMatch) {
+      return { nextIndex: startIndex + 1 };
+    }
+    
+    const funcName = funcMatch[1];
+    const params = funcMatch[2].split(',').map(p => p.trim()).filter(p => p);
+    
+    let i = startIndex + 1;
+    const funcBody: string[] = [];
+    
+    // Recopilar el cuerpo de la función
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.trim() === '' || line.startsWith('    ') || line.startsWith('\t')) {
+        funcBody.push(line);
+        i++;
+      } else {
+        break;
+      }
+    }
+    
+    // Crear la función
+    context.functions[funcName] = {
+      params,
+      body: funcBody,
+      execute: (args: any[]) => {
+        const localContext = { ...context };
+        
+        // Asignar parámetros
+        params.forEach((param, index) => {
+          localContext.variables[param] = args[index];
+        });
+        
+        // Ejecutar cuerpo de la función
+        let result;
+        for (const bodyLine of funcBody) {
+          const trimmedLine = bodyLine.trim();
+          if (trimmedLine.startsWith('return ')) {
+            result = evaluateExpression(trimmedLine.replace('return ', ''), localContext);
+            break;
+          } else if (trimmedLine) {
+            executeLine(trimmedLine, localContext);
+          }
+        }
+        
+        return result;
+      }
+    };
+    
+    return { nextIndex: i };
+  };
+
+  // Función para parsear if statements
+  const parseIfStatement = (lines: string[], startIndex: number, context: any) => {
+    const ifLine = lines[startIndex].trim();
+    let condition = '';
+    
+    if (ifLine.startsWith('if ')) {
+      condition = ifLine.replace('if ', '').replace(':', '');
+    } else if (ifLine.startsWith('elif ')) {
+      condition = ifLine.replace('elif ', '').replace(':', '');
+    } else if (ifLine === 'else:') {
+      condition = 'True';
+    }
+    
+    let i = startIndex + 1;
+    const ifBody: string[] = [];
+    
+    // Recopilar el cuerpo del if
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.trim() === '' || line.startsWith('    ') || line.startsWith('\t')) {
+        ifBody.push(line);
+        i++;
+      } else {
+        break;
+      }
+    }
+    
+    // Evaluar condición
+    const conditionResult = evaluateExpression(condition, context);
+    
+    if (conditionResult) {
+      // Ejecutar cuerpo del if
+      for (const bodyLine of ifBody) {
+        const trimmedLine = bodyLine.trim();
+        if (trimmedLine) {
+          executeLine(trimmedLine, context);
+        }
+      }
+    }
+    
+    return { nextIndex: i };
+  };
+
+  // Función para parsear for loops
+  const parseForLoop = (lines: string[], startIndex: number, context: any) => {
+    const forLine = lines[startIndex].trim();
+    const forMatch = forLine.match(/for\s+(\w+)\s+in\s+(.+):/);
+    
+    if (!forMatch) {
+      return { nextIndex: startIndex + 1 };
+    }
+    
+    const varName = forMatch[1];
+    const iterable = forMatch[2];
+    
+    let i = startIndex + 1;
+    const forBody: string[] = [];
+    
+    // Recopilar el cuerpo del for
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.trim() === '' || line.startsWith('    ') || line.startsWith('\t')) {
+        forBody.push(line);
+        i++;
+      } else {
+        break;
+      }
+    }
+    
+    // Evaluar iterable
+    let iterableValue;
+    if (iterable.startsWith('range(')) {
+      const rangeMatch = iterable.match(/range\(([^)]+)\)/);
+      if (rangeMatch) {
+        const args = rangeMatch[1].split(',').map(s => parseInt(s.trim()));
+        if (args.length === 1) {
+          iterableValue = Array.from({ length: args[0] }, (_, i) => i);
+        } else if (args.length === 2) {
+          iterableValue = Array.from({ length: args[1] - args[0] }, (_, i) => i + args[0]);
+        }
+      }
+    } else if (iterable.startsWith('enumerate(')) {
+      const enumMatch = iterable.match(/enumerate\(([^)]+)\)/);
+      if (enumMatch) {
+        const arrName = enumMatch[1].trim();
+        const arr = evaluateExpression(arrName, context);
+        if (Array.isArray(arr)) {
+          iterableValue = arr.map((item, index) => [index, item]);
+        }
+      }
+    } else {
+      iterableValue = evaluateExpression(iterable, context);
+    }
+    
+    // Ejecutar bucle
+    if (Array.isArray(iterableValue)) {
+      for (const item of iterableValue) {
+        context.variables[varName] = item;
+        
+        // Ejecutar cuerpo del for
+        for (const bodyLine of forBody) {
+          const trimmedLine = bodyLine.trim();
+          if (trimmedLine) {
+            executeLine(trimmedLine, context);
+          }
+        }
+      }
+    }
+    
+    return { nextIndex: i };
+  };
+
+  // Función para parsear while loops
+  const parseWhileLoop = (lines: string[], startIndex: number, context: any) => {
+    const whileLine = lines[startIndex].trim();
+    const condition = whileLine.replace('while ', '').replace(':', '');
+    
+    let i = startIndex + 1;
+    const whileBody: string[] = [];
+    
+    // Recopilar el cuerpo del while
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.trim() === '' || line.startsWith('    ') || line.startsWith('\t')) {
+        whileBody.push(line);
+        i++;
+      } else {
+        break;
+      }
+    }
+    
+    // Ejecutar while loop (con límite de seguridad)
+    let iterations = 0;
+    const maxIterations = 1000;
+    
+    while (evaluateExpression(condition, context) && iterations < maxIterations) {
+      for (const bodyLine of whileBody) {
+        const trimmedLine = bodyLine.trim();
+        if (trimmedLine) {
+          executeLine(trimmedLine, context);
+        }
+      }
+      iterations++;
+    }
+    
+    return { nextIndex: i };
+  };
+
+  // Función para ejecutar una línea individual
+  const executeLine = (line: string, context: any) => {
+    // Asignación de variables
+    if (line.includes('=') && !line.includes('==') && !line.includes('!=') && !line.includes('<=') && !line.includes('>=')) {
+      const [varName, value] = line.split('=').map(s => s.trim());
+      
+      // Manejar listas
+      if (value.startsWith('[') && value.endsWith(']')) {
+        const listContent = value.slice(1, -1);
+        if (listContent.trim() === '') {
+          context.variables[varName] = [];
+        } else {
+          context.variables[varName] = listContent.split(',').map(item => evaluateExpression(item.trim(), context));
+        }
+      }
+      // Manejar diccionarios
+      else if (value.startsWith('{') && value.endsWith('}')) {
+        context.variables[varName] = {};
+      }
+      // Manejar strings multilínea
+      else if (value.startsWith('"""') || value.startsWith("'''")) {
+        context.variables[varName] = value.slice(3, -3);
+      }
+      // Llamadas a funciones
+      else if (value.includes('(') && value.includes(')')) {
+        context.variables[varName] = evaluateExpression(value, context);
+      }
+      // Otros valores
+      else {
+        context.variables[varName] = evaluateExpression(value, context);
+      }
+    }
+    // Print statements
+    else if (line.startsWith('print(') && line.endsWith(')')) {
+      const content = line.slice(6, -1);
+      const result = evaluateExpression(content, context);
+      context.output += result + '\n';
+    }
+    // Llamadas a funciones
+    else if (line.includes('(') && line.includes(')')) {
+      evaluateExpression(line, context);
+    }
+    // Operaciones con listas
+    else if (line.includes('.append(') || line.includes('.extend(') || line.includes('.pop(')) {
+      const [varName, operation] = line.split('.').map(s => s.trim());
+      const variable = context.variables[varName];
+      
+      if (Array.isArray(variable)) {
+        if (operation.startsWith('append(')) {
+          const value = evaluateExpression(operation.slice(7, -1), context);
+          variable.push(value);
+        } else if (operation.startsWith('extend(')) {
+          const value = evaluateExpression(operation.slice(7, -1), context);
+          if (Array.isArray(value)) {
+            variable.push(...value);
+          }
+        } else if (operation.startsWith('pop(')) {
+          const indexStr = operation.slice(4, -1);
+          if (indexStr === '') {
+            variable.pop();
+          } else {
+            const index = evaluateExpression(indexStr, context);
+            variable.splice(index, 1);
+          }
+        }
+      }
+    }
+  };
+
+  // Función para evaluar expresiones
+  const evaluateExpression = (expr: string, context: any): any => {
+    expr = expr.trim();
+    
+    // String literals
+    if ((expr.startsWith('"') && expr.endsWith('"')) || (expr.startsWith("'") && expr.endsWith("'"))) {
+      return expr.slice(1, -1);
+    }
+    
+    // F-strings
+    if (expr.includes('f"') || expr.includes("f'")) {
+      let fString = expr;
+      if (fString.startsWith('f"') && fString.endsWith('"')) {
+        fString = fString.slice(2, -1);
+      } else if (fString.startsWith("f'") && fString.endsWith("'")) {
+        fString = fString.slice(2, -1);
+      }
+      
+      return fString.replace(/\{([^}]+)\}/g, (match, varExpr) => {
+        return evaluateExpression(varExpr.trim(), context);
+      });
+    }
+    
+    // Números
+    if (!isNaN(Number(expr))) {
+      return Number(expr);
+    }
+    
+    // Booleanos
+    if (expr === 'True') return true;
+    if (expr === 'False') return false;
+    if (expr === 'None') return null;
+    
+    // Variables
+    if (context.variables[expr] !== undefined) {
+      return context.variables[expr];
+    }
+    
+    // Llamadas a funciones
+    if (expr.includes('(') && expr.includes(')')) {
+      const funcMatch = expr.match(/(\w+)\(([^)]*)\)/);
+      if (funcMatch) {
+        const funcName = funcMatch[1];
+        const argsStr = funcMatch[2];
+        const args = argsStr ? argsStr.split(',').map(arg => evaluateExpression(arg.trim(), context)) : [];
+        
+        // Funciones built-in
+        if (funcName === 'len') {
+          return args[0]?.length || 0;
+        }
+        if (funcName === 'str') {
+          return String(args[0]);
+        }
+        if (funcName === 'int') {
+          return parseInt(args[0]);
+        }
+        if (funcName === 'float') {
+          return parseFloat(args[0]);
+        }
+        if (funcName === 'list') {
+          return Array.isArray(args[0]) ? args[0] : [args[0]];
+        }
+        if (funcName === 'sorted') {
+          return [...args[0]].sort();
+        }
+        
+        // Funciones definidas por el usuario
+        if (context.functions[funcName]) {
+          return context.functions[funcName].execute(args);
+        }
+        
+        // Métodos de objetos importados
+        if (context.variables[funcName]) {
+          return context.variables[funcName];
+        }
+      }
+    }
+    
+    // Operaciones matemáticas y lógicas
+    try {
+      const result = eval(expr.replace(/[a-zA-Z_][a-zA-Z0-9_]*/g, (match) => {
+        if (context.variables[match] !== undefined) {
+          return JSON.stringify(context.variables[match]);
+        }
+        return match;
+      }));
+      return result;
+    } catch {
+      return expr;
+    }
+  };
+
   const clearCode = () => {
-    setCode('# Escribe tu código Python aquí...\nprint("¡Hola, mundo!")');
+    setCode(`# Playground de Python - Consola Funcional
+# Ahora soporta funciones, bucles, condicionales y más!
+
+# Ejemplo básico
+def saludar(nombre):
+    return f"¡Hola, {nombre}!"
+
+nombre = "Programador"
+mensaje = saludar(nombre)
+print(mensaje)
+
+# Prueba con un bucle
+for i in range(3):
+    print(f"Iteración {i + 1}")
+
+# Tu código aquí...
+`);
     setOutput('');
     setToastMessage('Código limpiado');
     setShowToast(true);
